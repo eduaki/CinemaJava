@@ -2,40 +2,89 @@ package view;
 
 import java.util.Scanner;
 
+import controller.ControleLanchonete;
+
 public class MenuLanche{
-    public void exibirMenuLanche(){
+    public static void exibirMenuLanche(){
 
         Scanner scanner = new Scanner (System.in);
-        int opcao;
+        int opt;
 
         do{
-            System.out.println("\n Menu Lanchonete");
-            System.out.println("1 - Ver opcoes");
-            System.out.println("2 - Comprar");
-            System.out.println("3 - Historico de compras");
-            System.out.println("4 - Voltar ao menu principal");
+            System.out.println(" _ _ _ _ _ _ _ _ _ _ _ _ _ _  ");
+            System.out.println("|                            |");
+            System.out.println("| --------LANCHONETE---------|");
+            System.out.println("| 1 - Cardápio               |");
+            System.out.println("| 2 - Realizar pedido        |");
+            System.out.println("| 3 - Histórico de pedidos   |");
+            System.out.println("| 4 - Controle de estoque    |");
+            System.out.println("| 0 - Voltar                 |");
+            System.out.println("|_ _ _ _ _ _ _ _ _ _ _ _ _ _ |");
+            System.out.print("Opção escolhida: ");
+            opt = scanner.nextInt();
+            scanner.nextLine();
 
-            opcao = scanner.nextInt();
 
-            switch (opcao){
+
+            switch (opt){
                 case 1:
-                    System.out.println("Acessando opcoes");
+                   verCardapio();
                     break;
                 case 2:
-                    System.out.println("Acessando compra");
-                    break;
+                int optPedido;
+                int qtdItens = 0;
+                int[] temporario = null;
+                    do{
+                        verCardapio();
+                        System.out.println("| 0 - Voltar             |");
+                        System.out.println("| 4 - Finalizar Pedido   |");
+                        System.out.println("Produto selecionado:");
+                        optPedido = scanner.nextInt();
+                        scanner.nextLine();
+
+                        if(optPedido != 4){
+                            temporario[qtdItens] = optPedido;
+                            qtdItens++;
+                        }
+
+                        
+
+                    }while( optPedido != 4);
+                    if(temporario != null){
+                        ControleLanchonete.fazerPedido(temporario);
+                        break;
+                    }else{
+                        break;
+                    }
                 case 3:
                     System.out.println("Acessando historico de compras");
                     break;
                 case 4:
                     System.out.println("Voltando ao menu principal");;
                     break;
+                case 0:
+                    MenuPrincipal.exibirMenuPrincipal();
+                    break;
                 default:
                     System.out.println("Opcao invalida, escolha de 1 a 4...");
 
             }
-        }while(opcao != 4);
+        }while(opt != 0);
+
         scanner.close();
+    }
+
+    public static void verCardapio(){
+        System.out.println("  _ _ _ _ _ _ _ _ _ _ _ _ _  ");
+        System.out.println("|                           |");
+        System.out.println("|----------Opções-----------|");
+        System.out.println("| 1 - Combo:                |");
+        System.out.println("|   . Pipoca + Bebida       |");
+        System.out.println("| 2 - Pipoca                |");
+        System.out.println("| 3 - Bebida                |");
+        System.out.println("|                           |");
+        System.out.println("  _ _ _ _ _ _ _ _ _ _ _ _ _  ");
+
     }
 }
 
