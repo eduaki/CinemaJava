@@ -17,6 +17,7 @@ public class MenuPrincipal {
             System.out.print("Digite sua opcao desejada: ");
 
             opcao = scanner.nextInt();
+            scanner.nextLine();
 
             switch (opcao) {
                 case 1:
@@ -26,7 +27,7 @@ public class MenuPrincipal {
                     System.out.println("Acessando bilheteria...");
                     break;
                 case 3:
-                    System.out.println("Acessando lachoente...");
+                    MenuLanche.exibirMenuLanche();
                     break;
                 case 4:
                     System.out.println("Acessando gerencia...");
@@ -39,6 +40,7 @@ public class MenuPrincipal {
                     break;
             }
         } while(opcao != 0);
+        
         scanner.close();
     }
 }
