@@ -1,8 +1,6 @@
-package control;
+package controller;
 
-import model.Sala;
 import model.Sessao;
-import model.Filme;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -29,10 +27,5 @@ import java.util.List;
     }
 }
 
-    //metodo para comprar ingresso
-
-    //metodo para verificar se existe ingresso disponivel
-    //metodo para verificar se existe sala disponivel
-    //metodo para verificar se existe horario disponivel
     //metodo para verificar se existe filme disponivel
 

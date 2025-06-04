@@ -42,18 +42,5 @@ public class Filme {
     public void setDuracao(int duracao) {
         this.duracao = duracao;
     }
-
-    @Override
-    public String toString() {
-        return this.titulo + " - " + this.classificacao + " - " + this.genero + " - " + this.duracao;
-    }
-
-    public void exibirInformacoes() {
-        System.out.println("Título: " + titulo);
-        System.out.println("Gênero: " + genero);
-        System.out.println("Duração: " + duracao + " minutos");
-        System.out.println("Classificação: " + classificacao);
-        System.out.println("------------------------------");
-    }
 }
 

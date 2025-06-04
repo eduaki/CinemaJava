@@ -43,10 +43,5 @@ public class Sessao{
        this.ingressoDisponivel = ingressoDisponivel;
    }
 
-    @Override
-    public String toString(){
-       return "Sessao " + this.filme.getTitulo() + " - " + this.sala.getNumero() + " - " + this.hora;
-    }
-
 }
 

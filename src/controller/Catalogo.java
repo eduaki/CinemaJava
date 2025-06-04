@@ -1,4 +1,4 @@
-package control;
+package controller;
 import model.Filme;
 
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ public class Catalogo {
         }
 
         public List<Filme> getFilmes() {
-            return new ArrayList<>(filmes);
+            return  filmes;
         }
 
 }
