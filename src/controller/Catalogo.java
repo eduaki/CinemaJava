@@ -8,7 +8,7 @@ public class Catalogo {
         private static List<Filme> filmes = new ArrayList<>();
 
         public Catalogo() {
-            this.filmes = new ArrayList<>();
+            Catalogo.filmes = new ArrayList<>();
         }
 
         public static void cadastrarFilme(Filme filme) {

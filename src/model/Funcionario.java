@@ -1,5 +1,7 @@
 package model;
 
+import controller.*;
+
 public class Funcionario extends Pessoa{
 
     protected  int matricula;
@@ -26,14 +28,15 @@ public class Funcionario extends Pessoa{
     }
 
     
-    public void adicionaFilme(){
-
+    public void adicionaFilme(Filme filme){
+        //// faz parte da bilheteria
     }
-    public void cadastraFilme(){
 
+    public void cadastraFilme(Filme filme){
+        Catalogo.cadastrarFilme(filme);
     }
-    public void removeFilme(){
-
-    }
+    public void removeFilme(Filme filme){
+        Catalogo.removerFilme(filme);
+    }  
 
 }
