@@ -6,24 +6,22 @@ import java.util.List;
 public class GerenciamentoPedidos {
 
 
-    private List<Produto> cardapio = new ArrayList<>();
-    private List<Pedido> listaPedido = new ArrayList<>();
+    private static List<Produto> cardapio = new ArrayList<>();
+    private static List<Pedido> listaPedido = new ArrayList<>();
 
-    GerenciamentoPedidos(){
+    public GerenciamentoPedidos(){
         cardapio.add(new Produto(60.0f, "Combo"));
         cardapio.add(new Produto(40.0f, "Pipoca(com manteiga)"));
         cardapio.add(new Produto(25.0f, "Bebida 500ml"));
     }
 
-    public List<Produto> pegaProdutos(){
+    public static List<Produto> pegaCardapio(){
         return cardapio;
     }
 
-    // public float fazerPedido(Pedido pedido){
-    //     listaPedido.add(pedido);
+    public static void fazerPedido(Pedido pedido){
+        listaPedido.add(pedido);
 
-    //     return pedido.getValorTotalPedido();
-
-    // }
+    }
 
 }

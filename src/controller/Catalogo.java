@@ -5,21 +5,21 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Catalogo {
-        private List<Filme> filmes = new ArrayList<>();
+        private static List<Filme> filmes = new ArrayList<>();
 
         public Catalogo() {
             this.filmes = new ArrayList<>();
         }
 
-        public void cadastrarFilme(Filme filme) {
+        public static void cadastrarFilme(Filme filme) {
             filmes.add(filme);
         }
 
-        public void removerFilme(Filme filme) {
+        public static void removerFilme(Filme filme) {
             filmes.remove(filme);
         }
 
-        public List<Filme> getFilmes() {
+        public static List<Filme> getFilmes() {
             return  filmes;
         }
 

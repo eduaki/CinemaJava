@@ -1,5 +1,7 @@
 package view;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import controller.ControleLanchonete;
@@ -32,8 +34,7 @@ public class MenuLanche{
                     break;
                 case 2:
                 int optPedido;
-                int qtdItens = 0;
-                int[] temporario = null;
+                List<Integer> temporario = new ArrayList<>();
                     do{
                         verCardapio();
                         System.out.println("| 0 - Voltar             |");
@@ -42,9 +43,8 @@ public class MenuLanche{
                         optPedido = scanner.nextInt();
                         scanner.nextLine();
 
-                        if(optPedido != 4){
-                            temporario[qtdItens] = optPedido;
-                            qtdItens++;
+                        if(optPedido != 4 && optPedido != 0) {
+                            temporario.add(optPedido);
                         }
 
                         

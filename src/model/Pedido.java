@@ -1,28 +1,30 @@
 package model;
 
+import java.util.List;
 
 public class Pedido {
 
-    private String[] produtos;
+    private List<Integer> produtos;
     private float valorTotalPedido;
     private int numeroPedido;
 
-    public Pedido(String[] produtos, float valorTotalPedido){
-        this.produtos = produtos;
+    public Pedido(List<Integer> itensPedido, float valorTotalPedido, int numeroPedido){
+        this.produtos = itensPedido;
         this.valorTotalPedido = valorTotalPedido;
+        this.numeroPedido = numeroPedido;
     }
     
-    public String[] getProdutos() {
+    public List<Integer> getProdutos() {
         return produtos;
     }
-    public void setProdutos(String[] produtos) {
+    public void setProdutos(List<Integer> produtos) {
         this.produtos = produtos;
     }
 
-    public float getValorTotalPedido() {
+    public float getValor() {
         return valorTotalPedido;
     }
-    public void setValorTotalPedido(float valorTotalPedido) {
+    public void setValor(float valorTotalPedido) {
         this.valorTotalPedido = valorTotalPedido;
     }
 
@@ -32,4 +34,5 @@ public class Pedido {
     public void setNumeroPedido(int numeroPedido) {
         this.numeroPedido = numeroPedido;
     }
+
 }
