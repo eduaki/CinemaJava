@@ -25,15 +25,27 @@ public class ControleLanchonete {
             float valorProduto = cardapio.get(item-1).getValor();
 
             valorTotalPedido += valorProduto;
-
+            
         }
+        System.out.println("+ -------------------------- +");
+        System.out.println("|                            |");
+        System.out.println("|-----Pedido Finalizado------|");
+        System.out.println("+ -------------------------- +");
+        System.out.println("| Itens do pedido:           |");
+        for (int item : itensPedido) {
+            System.out.println("| - " + cardapio.get(item-1).getNome() + "\t|");
+        }
+        System.out.println("|Valor do pedido R$" + valorTotalPedido + "\t|");
+        System.out.println("|                            |");
+        System.out.println("+ -------------------------- +");
+
+        System.out.println("\n");
 
 
 
         Pedido pedido = new Pedido(itensPedido, valorTotalPedido, numeroPedido);
         GerenciamentoPedidos.fazerPedido(pedido);   
         
-    
 
     }
 
