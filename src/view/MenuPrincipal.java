@@ -1,7 +1,6 @@
 package view;
 
 import controller.*;
-import controller.*;
 import model.Cliente;
 
 import java.util.Scanner;
