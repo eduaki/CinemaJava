@@ -25,14 +25,7 @@ import java.util.List;
         }
         return resultado;
     }
-
-        public void exibirSessoes() {
-        }
-
-        public boolean verificaSessao(int idSessao) {
-            return false;
-        }
-    }
+}
 
     //metodo para verificar se existe filme disponivel
 
