@@ -46,8 +46,11 @@ public class MenuControleFilme {
                 System.out.print("Digite a duração (em minutos): ");
                 int duracao = scanner.nextInt();
                 scanner.nextLine();
+                System.out.print("Classificação indicativa(idade): ");
+                int classificacao = scanner.nextInt();
+                scanner.nextLine();
 
-                Filme filme = new Filme(nome, genero, duracao);
+                Filme filme = new Filme(nome, genero, duracao, classificacao);
                 Catalogo.cadastrarFilme(filme);
                 System.out.println("Filme cadastrado com sucesso!");
             }

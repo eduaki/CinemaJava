@@ -33,7 +33,7 @@ public class MenuLanche{
 
             switch (opt){
                 case 1:
-                   verCardapio();
+                    verCardapio();
                     break;
                 case 2:
                 int optPedido;
@@ -44,7 +44,7 @@ public class MenuLanche{
                         System.out.println("| 4 - Finalizar Pedido      |");
                         System.out.println("+ ------------------------- +");
 
-                        System.out.println("Produto selecionado:");
+                        System.out.print("Produto selecionado: ");
                         optPedido = scanner.nextInt();
                         scanner.nextLine();
 
@@ -67,9 +67,8 @@ public class MenuLanche{
                     if(temporario != null){
                         ControleLanchonete.fazerPedido(temporario);
                         break;
-                    }else{
-                        break;
                     }
+                    break;
                 case 3:
                     System.out.println("Acessando historico de compras");
                     break;
