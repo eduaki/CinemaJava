@@ -7,7 +7,7 @@ public class Filme {
     private String genero;
     private int duracao;
 
-    public Filme(String titulo, String genero, int duracao) {
+    public Filme(String titulo, String genero, int duracao, int classificacao) {
         this.titulo = titulo;
         this.classificacao = classificacao;
         this.genero = genero;

@@ -1,6 +1,5 @@
 package view;
 import java.util.Scanner;
-import model.Filme;
 
 public class MenuSessao {
     private static Scanner scanner = new Scanner(System.in);

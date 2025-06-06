@@ -1,17 +1,22 @@
 package view;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 import controller.ControleLanchonete;
+import model.GerenciamentoPedidos;
 
 public class MenuLanche{
     public static void exibirMenuLanche(){
+
+        GerenciamentoPedidos gerenciamentoPedidos = new GerenciamentoPedidos();
 
         Scanner scanner = new Scanner (System.in);
         int opt;
 
         do{
-            System.out.println(" _ _ _ _ _ _ _ _ _ _ _ _ _ _  ");
+            System.out.println("+ -------------------------- +");
             System.out.println("|                            |");
             System.out.println("| --------LANCHONETE---------|");
             System.out.println("| 1 - Cardápio               |");
@@ -19,7 +24,7 @@ public class MenuLanche{
             System.out.println("| 3 - Histórico de pedidos   |");
             System.out.println("| 4 - Controle de estoque    |");
             System.out.println("| 0 - Voltar                 |");
-            System.out.println("|_ _ _ _ _ _ _ _ _ _ _ _ _ _ |");
+            System.out.println("+ -------------------------- +");
             System.out.print("Opção escolhida: ");
             opt = scanner.nextInt();
             scanner.nextLine();
@@ -28,34 +33,42 @@ public class MenuLanche{
 
             switch (opt){
                 case 1:
-                   verCardapio();
+                    verCardapio();
                     break;
                 case 2:
                 int optPedido;
-                int qtdItens = 0;
-                int[] temporario = null;
+                List<Integer> temporario = new ArrayList<>();
                     do{
                         verCardapio();
-                        System.out.println("| 0 - Voltar             |");
-                        System.out.println("| 4 - Finalizar Pedido   |");
-                        System.out.println("Produto selecionado:");
+                        System.out.println("| 0 - Voltar                |");
+                        System.out.println("| 4 - Finalizar Pedido      |");
+                        System.out.println("+ ------------------------- +");
+
+                        System.out.print("Produto selecionado: ");
                         optPedido = scanner.nextInt();
                         scanner.nextLine();
 
-                        if(optPedido != 4){
-                            temporario[qtdItens] = optPedido;
-                            qtdItens++;
+                        if(optPedido != 4 && optPedido != 0) {
+                            temporario.add(optPedido);
                         }
 
+                        System.out.println("+ ------------------------- +");
+                        System.out.println("|                           |");
+                        System.out.println("|---------Carrinho----------|");
+                        for(int item : temporario){
+                            System.out.println("| - "+ GerenciamentoPedidos.pegaCardapio().get(item-1).getNome()+ "                   |");
+                            System.out.println("|                           |");
+                            System.out.println("+ ------------------------- +");
+                            System.out.println("\n");
+                        }
                         
 
                     }while( optPedido != 4);
                     if(temporario != null){
                         ControleLanchonete.fazerPedido(temporario);
                         break;
-                    }else{
-                        break;
                     }
+                    break;
                 case 3:
                     System.out.println("Acessando historico de compras");
                     break;
@@ -75,15 +88,14 @@ public class MenuLanche{
     }
 
     public static void verCardapio(){
-        System.out.println("  _ _ _ _ _ _ _ _ _ _ _ _ _  ");
+        System.out.println("+ ------------------------- +");
         System.out.println("|                           |");
         System.out.println("|----------Opções-----------|");
         System.out.println("| 1 - Combo:                |");
         System.out.println("|   . Pipoca + Bebida       |");
         System.out.println("| 2 - Pipoca                |");
         System.out.println("| 3 - Bebida                |");
-        System.out.println("|                           |");
-        System.out.println("  _ _ _ _ _ _ _ _ _ _ _ _ _  ");
+        System.out.println("+ ------------------------- +");
 
     }
 }

@@ -4,13 +4,8 @@ import model.Filme;
 import java.util.Scanner;
 
 public class MenuControleFilme {
-        private Catalogo catalogo;
-        private Scanner scanner;
 
-        public MenuControleFilme(Catalogo catalogo, Scanner scanner) {
-            this.catalogo = catalogo;
-            this.scanner = scanner;
-        }
+    Scanner scanner = new Scanner(System.in);
 
         public void exibirMenu() {
             int opcao;
@@ -51,18 +46,21 @@ public class MenuControleFilme {
                 System.out.print("Digite a duração (em minutos): ");
                 int duracao = scanner.nextInt();
                 scanner.nextLine();
+                System.out.print("Classificação indicativa(idade): ");
+                int classificacao = scanner.nextInt();
+                scanner.nextLine();
 
-                Filme filme = new Filme(nome, genero, duracao);
-                catalogo.cadastrarFilme(filme);
+                Filme filme = new Filme(nome, genero, duracao, classificacao);
+                Catalogo.cadastrarFilme(filme);
                 System.out.println("Filme cadastrado com sucesso!");
             }
 
             private void listarFilmes() {
                 System.out.println("\n---- Filmes Cadastrados -----");
-                if (catalogo.getFilmes().isEmpty()) {
+                if (Catalogo.getFilmes().isEmpty()) {
                     System.out.println("Nenhum filme cadastrado.");
                 } else {
-                    catalogo.getFilmes().forEach(System.out::println);
+                    Catalogo.getFilmes().forEach(System.out::println);
                 }
             }
         }
