@@ -6,6 +6,7 @@ import java.util.Scanner;
 
 import controller.ControleLanchonete;
 import model.GerenciamentoPedidos;
+import model.Produto;
 
 public class MenuLanche{
     public static void exibirMenuLanche(){
@@ -70,7 +71,9 @@ public class MenuLanche{
                     }
                     break;
                 case 3:
-                    System.out.println("Acessando historico de compras");
+                
+                MenuHistorico.menuHistorico();
+                   
                     break;
                 case 4:
                     System.out.println("Voltando ao menu principal");;
@@ -98,5 +101,29 @@ public class MenuLanche{
         System.out.println("+ ------------------------- +");
 
     }
+
+    public static void pedidoFinalizado(List<Integer> itensPedido, List<Produto> cardapio, float valorTotalPedido){
+
+        System.out.println("+ -------------------------- +");
+        System.out.println("|                            |");
+        System.out.println("|     Pedido Finalizado      |");
+        System.out.println("+ -------------------------- +");
+        System.out.println("| Itens do pedido:           |");
+        for (int item : itensPedido) {
+            System.out.println("| - " + cardapio.get(item-1).getNome() + "\t|");
+        }
+        System.out.println("|Valor do pedido R$" + valorTotalPedido + "\t|");
+        System.out.println("|                            |");
+        System.out.println("+ -------------------------- +");
+
+        System.out.println("\n");
+    }
+
+
+
+
+
+
+
 }
 

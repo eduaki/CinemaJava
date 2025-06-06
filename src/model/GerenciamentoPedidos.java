@@ -24,4 +24,9 @@ public class GerenciamentoPedidos {
 
     }
 
+    public static List<Pedido> verHistorico(){
+        return listaPedido;
+    }
+
+
 }
