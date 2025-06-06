@@ -4,8 +4,6 @@ import java.util.List;
 import java.util.Random;
 
 import model.*;
-import view.MenuHistorico;
-import view.MenuLanche;
 
 
 public class ControleLanchonete {
@@ -16,7 +14,6 @@ public class ControleLanchonete {
     static int numeroPedido = 1000 + random.nextInt(9999);
     static float valorTotalPedido = 0;
 
-    static List<Produto> cardapio = GerenciamentoPedidos.pegaCardapio();
 
     public static void fazerPedido(List<Integer> itensPedido){
 
@@ -80,22 +77,26 @@ public class ControleLanchonete {
             valorTotalPedido += valorProduto;
             
         }
-        MenuLanche.pedidoFinalizado(itensPedido, cardapio, valorTotalPedido);
+        System.out.println("+ -------------------------- +");
+        System.out.println("|                            |");
+        System.out.println("|-----Pedido Finalizado------|");
+        System.out.println("+ -------------------------- +");
+        System.out.println("| Itens do pedido:           |");
+        for (int item : itensPedido) {
+            System.out.println("| - " + cardapio.get(item-1).getNome() + "\t|");
+        }
+        System.out.println("|Valor do pedido R$" + valorTotalPedido + "\t|");
+        System.out.println("|                            |");
+        System.out.println("+ -------------------------- +");
+
+        System.out.println("\n");
+
 
 
         Pedido pedido = new Pedido(itensPedido, valorTotalPedido, numeroPedido);
         GerenciamentoPedidos.fazerPedido(pedido);   
         
 
-    }
-
-
-    public static void verHistorico(){
-        List<Pedido> historico = GerenciamentoPedidos.verHistorico();
-
-        MenuHistorico.exibirHistorico(historico, cardapio);
-
-      
     }
 
 
