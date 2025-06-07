@@ -4,9 +4,7 @@ import java.util.Random;
 import java.util.Scanner;
 
 import controller.*;
-import model.Cliente;
-import model.Funcionario;
-import model.GerenciamentoUsuarios;
+import model.*;
 
 public class MenuCadastro {
 
@@ -18,10 +16,10 @@ public class MenuCadastro {
 
         do{
             System.out.println("+ -------------------------- +");
-            System.out.println("|                            |");
-            System.out.println("| ---- Cadastrar usuário ----|");
-            System.out.println("| 1 - Cliente                |");
-            System.out.println("| 2 - Funcionário            |");
+            System.out.println("|        Gerenciamento       |");
+            System.out.println("| ---------------------------|");
+            System.out.println("| 1 - Adicionar cliente      |");
+            System.out.println("| 2 - Adicionar funcionário  |");
             System.out.println("| 3 - Remover cliente        |");
             System.out.println("| 4 - Remover funcionário    |");
             System.out.println("| 0 - Voltar                 |");
@@ -62,8 +60,8 @@ public class MenuCadastro {
         Random random = new Random();
 
         System.out.println("+ -------------------------- +");
-        System.out.println("|                            |");
-        System.out.println("| ---- Cadastrar cliente ----|");
+        System.out.println("|      Cadastrar cliente     |");
+        System.out.println("| ---------------------------|");
           System.err.print("| Nome: ");
         String nome = leitor.nextLine();
           System.out.print("| Cpf: ");
@@ -87,7 +85,6 @@ public class MenuCadastro {
     public static Cliente menuRemoveCliente(){
 
       System.out.println("+ -------------------------- +");
-      System.out.println("|                            |");
       System.out.println("| CPF: ");
       String cpf = leitor.nextLine();
       
@@ -102,7 +99,6 @@ public class MenuCadastro {
     public static Funcionario menuRemoveFuncionario(){
 
       System.out.println("+ -------------------------- +");
-      System.out.println("|                            |");
       System.out.println("| CPF: ");
       String cpf = leitor.nextLine();
       

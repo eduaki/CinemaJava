@@ -1,17 +1,16 @@
 package view;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import controller.ControleLanchonete;
-import model.GerenciamentoPedidos;
 import model.Pedido;
 import model.Produto;
 
 public class MenuHistorico {
         public static void menuHistorico(){
             Scanner scanner = new Scanner (System.in);
+            
             int optHistorico;
             do{
                 System.out.println("+ -------------------------- +");
@@ -48,6 +47,8 @@ public class MenuHistorico {
                 }
 
             }while (optHistorico != 0);
+
+            scanner.close();
         }
 
 
@@ -63,5 +64,6 @@ public class MenuHistorico {
                 System.out.println("Valor total: " + historico.get(i).getValor());
             }
         }
+
 
 }

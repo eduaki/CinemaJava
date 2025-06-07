@@ -42,7 +42,7 @@ public class MenuPrincipal {
                     MenuLanche.exibirMenuLanche();
                     break;
                 case 4:
-                    System.out.println("Acessando gerência...");
+                    MenuCadastro.menuGeral();
                     break;
                 case 0:
                     System.out.println("Saindo... Obrigado e volte sempre!");

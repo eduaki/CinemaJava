@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-import controller.ControleLanchonete;
-import model.GerenciamentoPedidos;
-import model.Produto;
+
+import  controller.*;
+import model.*;
 
 public class MenuLanche{
     public static void exibirMenuLanche(){
@@ -29,8 +29,6 @@ public class MenuLanche{
             System.out.print("Opção escolhida: ");
             opt = scanner.nextInt();
             scanner.nextLine();
-
-
 
             switch (opt){
                 case 1:
@@ -65,15 +63,14 @@ public class MenuLanche{
                         
 
                     }while( optPedido != 4);
-                    if(temporario != null){
+                    {
                         ControleLanchonete.fazerPedido(temporario);
                         break;
                     }
-                    break;
                 case 3:
                 
                 MenuHistorico.menuHistorico();
-                   
+                
                     break;
                 case 4:
                     System.out.println("Voltando ao menu principal");;
@@ -105,7 +102,6 @@ public class MenuLanche{
     public static void pedidoFinalizado(List<Integer> itensPedido, List<Produto> cardapio, float valorTotalPedido){
 
         System.out.println("+ -------------------------- +");
-        System.out.println("|                            |");
         System.out.println("|     Pedido Finalizado      |");
         System.out.println("+ -------------------------- +");
         System.out.println("| Itens do pedido:           |");
@@ -118,12 +114,6 @@ public class MenuLanche{
 
         System.out.println("\n");
     }
-
-
-
-
-
-
 
 }
 
