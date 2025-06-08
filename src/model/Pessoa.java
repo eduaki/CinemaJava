@@ -1,6 +1,10 @@
 package model;
 
-abstract public class Pessoa {
+import java.io.Serializable;
+
+abstract public class Pessoa implements Serializable{
+
+    private static final long serialVersionUID = 1L;
 
     protected String nome, email, cpf;
     protected int idade;

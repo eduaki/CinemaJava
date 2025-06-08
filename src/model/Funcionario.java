@@ -7,13 +7,15 @@ public class Funcionario extends Pessoa{
     protected int matricula;
     protected double salario;    
     protected boolean admin;
+    protected String senha;
 
 
-    public Funcionario(String nome, String email, String cpf, int idade, int matricula, double salario) {
+    public Funcionario(String nome, String email, String cpf, int idade, int matricula, double salario, boolean admin, String senha) {
         super(nome, email, cpf, idade);
         this.matricula = matricula;
         this.salario = salario;
-        this.admin = false; /// vai ser usada para verificar se o usuário é um administrador
+        this.admin = admin; /// vai ser usada para verificar se o usuário é um administrador
+        this.senha = senha;
     }
 
     public int getMatricula() {
@@ -28,6 +30,20 @@ public class Funcionario extends Pessoa{
     }
     public void setSalario(double salario) {
         this.salario = salario;
+    }
+
+    public boolean isAdmin(){
+        return admin;
+    }
+    public void setAdmin(boolean admin){
+        this.admin = admin;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+    public void setSenha(String senha) {
+        this.senha = senha;
     }
 
 

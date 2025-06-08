@@ -4,7 +4,16 @@ import view.*;
 
 public class ControleMenuCadastro {
     
+    public static boolean verificaAdmin(int opt){
+        switch (opt) {
+            case 1: return true;
+            case 2 : return false;
+            default: return false; 
+        }
+    }
+
     public static void menuGeral(int opt){
+
 
         switch (opt) {
             case 1 -> ControleUsuario.adicionarCliente(MenuCadastro.menuAdicionaCliente());

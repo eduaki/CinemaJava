@@ -1,5 +1,9 @@
 package controller;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
+import java.util.List;
+
 import model.*;
 
 public class ControleUsuario {
@@ -9,8 +13,19 @@ public class ControleUsuario {
   
 
   public static void adicionarCliente(Cliente cliente){
-    /// função que adiciona Cliente
     GerenciamentoUsuarios.adicionarCliente(cliente);
+    
+    try(ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("src/Clientes.dat"))){
+      List<Cliente> listaClientes = GerenciamentoUsuarios.listaClientes;
+
+      for(Cliente c : listaClientes){
+        os.writeObject(c);
+      }
+
+    }catch(Exception e){
+      e.printStackTrace();
+    }
+
   }
   public static void removeCadastroCliente(Cliente cliente){
     /// função que remove cliente
@@ -18,12 +33,36 @@ public class ControleUsuario {
   }
 
     public static void adicionarFuncionario(Funcionario funcionario){
-    /// função que adciona funcionarios
     GerenciamentoUsuarios.adicionarFuncionario(funcionario);
+
+    try(ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("src/Funcionarios.dat"))){
+      List<Funcionario> listaFuncionarios = GerenciamentoUsuarios.listaFuncionarios;
+
+      for(Funcionario f : listaFuncionarios){
+        os.writeObject(f);
+      }
+
+    }catch(Exception e){
+      e.printStackTrace();
+    }
+
   }
   public static void removeFuncionario(Funcionario funcionario){
     /// função que demite funcionario
     GerenciamentoUsuarios.removeFuncionario(funcionario);
+  }
+
+  public static boolean verificaAdmin(String mail, String senha){
+
+    for(Funcionario f : GerenciamentoUsuarios.listaFuncionarios){
+      if(f.getEmail().equals(mail)){
+        if(f.isAdmin() == true && f.getSenha() != null && f.getSenha().equals(senha)){
+          return true;
+        }
+      }
+    }
+    
+    return false;
   }
 
 }
