@@ -28,7 +28,7 @@ public class GerenciamentoUsuarios {
 
         if (!adminExiste) {
             Funcionario admintemp = new Funcionario(
-                "Eduardo",
+                "Admin",
                 "admin@admin.com",
                 "admin",
                 21,
