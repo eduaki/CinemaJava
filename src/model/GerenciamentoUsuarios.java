@@ -1,93 +1,117 @@
 package model;
 
-import java.io.EOFException;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 
 public class GerenciamentoUsuarios {
 
-    public static List<Funcionario> listaFuncionarios = new ArrayList<>();
-    public static List<Cliente> listaClientes = new ArrayList<>();
+    private static List<Funcionario> listaFuncionarios = new ArrayList<>();
+    private static List<Cliente> listaClientes = new ArrayList<>();
+    private static boolean dadosCarregados = false;
 
-    static {
-      listaFuncionarios.add(  /// usuário admin padrão
-        new Funcionario("Eduardo", "teste@teste.com", "148.210.734-12", 21, 0000000, 0, true, "senhaAdmin")
-      );
-
-      try(ObjectInputStream os = new ObjectInputStream(new FileInputStream("src/Clientes.dat"))) { /// salva os dados do arquivo existente dentro da lista local
-      List<Cliente> listatemp = new ArrayList<>();
-      while (true) {
-        try{
-          Cliente c = (Cliente) os.readObject();
-          listatemp.add(c);
-        }catch(EOFException | ClassNotFoundException e){
-          break;
+    private static void verificaInicializacao() {
+        if (!dadosCarregados) {
+            inicializaDados();
         }
-      }
 
-      for(Cliente C : listatemp){
-        listaClientes.add(C);
-      }
+        boolean adminExiste = false;
+        for (Funcionario f : listaFuncionarios) {
+            if ("admin".equals(f.getCpf())) {
+                adminExiste = true;
+                break;
+            }
+        }
 
-
-    } catch (IOException e) {
-      e.printStackTrace();
+        if (!adminExiste) {
+            Funcionario admintemp = new Funcionario(
+                "Eduardo",
+                "admin@admin.com",
+                "admin",
+                21,
+                0,
+                0,
+                true,
+                "senhaAdmin"
+            );
+            listaFuncionarios.add(admintemp);
+            salvarFuncionarios();
+        }
     }
 
-      try(ObjectInputStream os = new ObjectInputStream(new FileInputStream("src/Funcionarios.dat"))) { /// salva os dados do arquivo existente dentro da lista local
-        List<Funcionario> listatemp = new ArrayList<>();
-        while (true) {
-          try{
-            Funcionario f = (Funcionario) os.readObject();
-            listatemp.add(f);
-          }catch(EOFException e){
-            break;
-          } catch (ClassNotFoundException e) {
+    @SuppressWarnings("unchecked")
+    public static void inicializaDados() {
+        try (ObjectInputStream oisClientes = new ObjectInputStream(new FileInputStream("src/Clientes.dat"))) {
+            listaClientes = (List<Cliente>) oisClientes.readObject();
+        } catch (Exception e) {
+            listaClientes = new ArrayList<>();
+        }
+
+        try (ObjectInputStream oisFuncionarios = new ObjectInputStream(new FileInputStream("src/Funcionarios.dat"))) {
+            listaFuncionarios = (List<Funcionario>) oisFuncionarios.readObject();
+        } catch (Exception e) {
+            listaFuncionarios = new ArrayList<>();
+        }
+
+        dadosCarregados = true;
+    }
+
+    public static void salvarFuncionarios() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("src/Funcionarios.dat"))) {
+            oos.writeObject(listaFuncionarios);
+        } catch (Exception e) {
             e.printStackTrace();
-          }
         }
+    }
 
-        for(Funcionario F : listatemp){
-          listaFuncionarios.add(F);
+    public static void salvarClientes() {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("src/Clientes.dat"))) {
+            oos.writeObject(listaClientes);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-
-      } catch (FileNotFoundException e) {
-        System.out.println("[NENHUM FUNCIONÁRIO PRE-CADASTRADO]");
-      } catch(IOException e){
-        e.printStackTrace();
-      }
-
     }
 
-    /// funções de gerenciamento dos clientes
-    public static List<Cliente> getLiscaClientes() {
-      return listaClientes;
-    }
-    public static List<Cliente> adicionarCliente(Cliente cliente){
-      listaClientes.add(cliente);
-      return listaClientes;
-    }
-    public static void removeCadastroCliente(Cliente cliente){
-      listaClientes.remove(cliente);
+    public static List<Cliente> getListaClientes() {
+        verificaInicializacao();
+        return listaClientes;
     }
 
-    //// funções de gerenciamento dos funcionarios
+    public static void adicionarCliente(Cliente cliente) {
+        verificaInicializacao();
+        listaClientes.add(cliente);
+        salvarClientes();
+    }
+
+    public static void removerCliente(Cliente cliente) {
+        verificaInicializacao();
+        listaClientes.remove(cliente);
+        salvarClientes();
+    }
+
     public static List<Funcionario> getListaFuncionarios() {
-      return listaFuncionarios;
-    }
-    public static void adicionarFuncionario(Funcionario funcionario){
-      listaFuncionarios.add(funcionario);
-    }
-    public static void removeFuncionario(Funcionario funcionario){
-      listaFuncionarios.remove(funcionario);
+        verificaInicializacao();
+        return new ArrayList<>(listaFuncionarios); // evitar ConcurrentModificationException
     }
 
-    public static boolean verificaAdmin(int id){
-      return listaFuncionarios.get(id).admin;
+    public static void adicionarFuncionario(Funcionario funcionario) {
+        verificaInicializacao();
+        listaFuncionarios.add(funcionario);
+        salvarFuncionarios();
     }
-  
+
+    public static void removerFuncionario(Funcionario funcionario) {
+        verificaInicializacao();
+        listaFuncionarios.remove(funcionario);
+        salvarFuncionarios();
+    }
+
+    public static boolean verificaAdmin(int id) {
+        verificaInicializacao();
+        return listaFuncionarios.get(id).isAdmin();
+    }
 }

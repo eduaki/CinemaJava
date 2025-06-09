@@ -94,6 +94,7 @@ public class MenuCadastro {
         System.out.println("+ -------------------------- +");
         System.out.println("|   Voce precisa ser admin   |");
         System.out.println("+ -------------------------- +");
+        menuGeral();
         return null;
       }
 
@@ -106,7 +107,7 @@ public class MenuCadastro {
         System.out.println("| CPF: ");
         String cpf = leitor.nextLine();
         
-        for(Cliente cliente : GerenciamentoUsuarios.getLiscaClientes()){
+        for(Cliente cliente : GerenciamentoUsuarios.getListaClientes()){
           if(cliente.getCpf() == cpf) return cliente; 
         }
 
@@ -122,21 +123,31 @@ public class MenuCadastro {
     }
 
     public static Funcionario menuRemoveFuncionario(){
+      exibeListaFuncionarios();
 
-      if(verificaAdmMenu()){
-        System.out.println("+ -------------------------- +");
-        System.out.println("| CPF: ");
-        String cpf = leitor.nextLine();
+      if(menuVoltarContinuar()){
+        if(verificaAdmMenu()){
+
+          System.out.println("+ -------------------------- +");
+          System.out.println("| Matricula do Funcionário:  |");
+          System.out.print("| > ");
+          int matricula = leitor.nextInt();
+          leitor.nextLine();
+          
+          for(Funcionario funcionario : GerenciamentoUsuarios.getListaFuncionarios()){
+            if(funcionario.getMatricula() == matricula) return funcionario; 
+          }
         
-        for(Funcionario funcionario : GerenciamentoUsuarios.getListaFuncionarios()){
-          if(funcionario.getCpf() == cpf) return funcionario; 
+          return null;  
+        }else{
+          System.out.println(" ---------------------------- ");
+          System.out.println("|   Você precisa ser admin   |");
+          System.out.println(" ---------------------------- ");
+          menuGeral();
+          return null;
         }
-      
-        return null;  
       }else{
-        System.out.println("+ -------------------------- +");
-        System.out.println("|   Voce precisa ser admin   |");
-        System.out.println("+ -------------------------- +");
+        menuGeral();
         return null;
       }
 
@@ -157,5 +168,52 @@ public class MenuCadastro {
         return ControleUsuario.verificaAdmin(cpf, senha);
     }
 
+    public static boolean menuVoltarContinuar(){
+      System.out.println("+ -------------------------- +");
+      System.out.println("|      Deseja continuar?     |");
+      System.out.println("|        [1]sim [2]não       |");
+      System.out.println("+ -------------------------- +");
+      System.out.print("| > ");
+      int opt = leitor.nextInt();
+      leitor.nextLine();
+      return ControleMenuCadastro.voltarContinuar(opt);
+  }
+
+    public static void usuarioJaCadastrado(){ /// mensagem para quando o usuário ja está cadastrado
+      System.out.println("+ -------------------------- +");
+      System.out.println("|    Usuário já cadastrado   |");
+      System.out.println("+ -------------------------- +");
+    }
+    public static void usuarioCadastrado(){ /// mensagem para quando é cadastrado com sucesso
+      System.out.println("+ -------------------------- +");
+      System.out.println("|   Cadastrado com sucesso!  |");
+      System.out.println("+ -------------------------- +");
+    }
+
+    public static void removidoSucesso(){
+      System.out.println(" ---------------------------- ");
+      System.out.println("|    Removido com sucesso!    |");
+      System.out.println(" ---------------------------- ");
+    }
+
+    public static void exibeListaFuncionarios(){
+      System.out.println("+ -------------------------- +");
+      System.out.println("|   Lista de Funcionarios:   |");
+      System.out.println("+ -------------------------- +");
+
+      if(!GerenciamentoUsuarios.getListaFuncionarios().isEmpty()){
+        for(Funcionario f : GerenciamentoUsuarios.getListaFuncionarios()){
+          System.out.println("+ -------------------------- +");
+          System.out.printf("| %s(%d) - %s\n", f.getNome(), f.getMatricula(), (f.isAdmin()?"Admin" : "Operador"));
+          System.out.println("+ -------------------------- +");  
+        }
+      }else{
+        System.out.println("+ -------------------------- +");
+        System.out.println("|     Nenhum funcionario!    |");
+        System.out.println("+ -------------------------- +");  
+      }
+
+
+    }
 
 }
