@@ -42,5 +42,10 @@ public class Filme {
     public void setDuracao(int duracao) {
         this.duracao = duracao;
     }
+
+    @Override
+    public String toString() {
+        return "Titulo" + this.titulo + "Classificacao" +  this.classificacao + "Genero" + this.genero + "Duracao" + this.duracao;
+    }
 }
 

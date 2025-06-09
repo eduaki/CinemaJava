@@ -1,21 +1,23 @@
 package view;
 import controller.Catalogo;
 import model.Filme;
+
+import java.util.List;
 import java.util.Scanner;
 
 public class MenuControleFilme {
+    static Scanner scanner = new Scanner(System.in);
 
-    Scanner scanner = new Scanner(System.in);
+    public static void exibirMenuFilme() {
+        int opcao;
 
-        public void exibirMenu() {
-            int opcao;
             do {
-                    System.out.println("\n----- Menu Controle de Filmes -----");
-                    System.out.println("1 - Cadastrar Filme");
-                    System.out.println("2 - Listar Filmes");
-                    System.out.println("3 - Remover Filme");
-                    System.out.println("4 - Voltar");
-                    System.out.print("Escolha uma opção: ");
+                System.out.println("\n----- Menu Controle de Filmes -----");
+                System.out.println("1 - Cadastrar Filme");
+                System.out.println("2 - Listar Filmes");
+                System.out.println("3 - Remover Filme");
+                System.out.println("4 - Voltar");
+                System.out.print("Escolha uma opção: ");
                     opcao = scanner.nextInt();
                     scanner.nextLine();
 
@@ -38,7 +40,7 @@ public class MenuControleFilme {
                 } while (opcao != 4);
             }
 
-            private void cadastrarFilme() {
+            private static void cadastrarFilme() {
                 System.out.print("Digite o nome do filme: ");
                 String nome = scanner.nextLine();
                 System.out.print("Digite o gênero: ");
@@ -55,13 +57,20 @@ public class MenuControleFilme {
                 System.out.println("Filme cadastrado com sucesso!");
             }
 
-            private void listarFilmes() {
+
+
+            //metodo para listar filme
+            private static void listarFilmes() {
+                List<Filme> filmes = Catalogo.getFilmes();
                 System.out.println("\n---- Filmes Cadastrados -----");
-                if (Catalogo.getFilmes().isEmpty()) {
-                    System.out.println("Nenhum filme cadastrado.");
-                } else {
-                    Catalogo.getFilmes().forEach(System.out::println);
-                }
+                System.out.println("Filme 1" );
+                System.out.println(new Filme("Lilo e Stitch", "Animacao", 200, 10 ));
+                System.out.println("Filme 2");
+                System.out.println(new Filme("Premonicao 6", "Terror", 220, 18));
+                System.out.println("Filme 3");
+                System.out.println(new Filme("Manicreft", "Aventura", 200, 10));
+                System.out.println("----------------------------------");
+
             }
         }
 

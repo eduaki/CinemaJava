@@ -25,6 +25,7 @@ public class MenuPrincipal {
             switch (opcao) {
                 case 1:
                     System.out.println("Acessando o catalogo...");
+                    MenuSessao.exibirMenuSessao();
                     break;
                 case 2:
                     // Simulando login de cliente (substituir depois com tela de login)
