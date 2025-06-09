@@ -35,7 +35,10 @@ public class ControleMenuCadastro {
                 else MenuCadastro.usuarioCadastrado();
             break;    
 
-            case 3: ControleUsuario.removeCadastroCliente(MenuCadastro.menuRemoveCliente());break;
+            case 3: 
+                if(ControleUsuario.removeCadastroCliente(MenuCadastro.menuRemoveCliente()))
+                MenuCadastro.removidoSucesso();
+            break;
             case 4:  
                 if(ControleUsuario.removeFuncionario(MenuCadastro.menuRemoveFuncionario()))
                     MenuCadastro.removidoSucesso();

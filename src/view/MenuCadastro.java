@@ -102,26 +102,30 @@ public class MenuCadastro {
 
     public static Cliente menuRemoveCliente(){
 
-      if(verificaAdmMenu()){
-        System.out.println("+ -------------------------- +");
-        System.out.println("| CPF: ");
-        String cpf = leitor.nextLine();
-        
-        for(Cliente cliente : GerenciamentoUsuarios.getListaClientes()){
-          if(cliente.getCpf() == cpf) return cliente; 
-        }
+      exibeListaClientes();
 
-        
-        return null;
+      if(menuVoltarContinuar()){
+        if(verificaAdmMenu()){
+          System.out.println("+ -------------------------- +");
+          System.out.println("| CPF: ");
+          String cpf = leitor.nextLine();
+          
+          for(Cliente cliente : GerenciamentoUsuarios.getListaClientes()){
+            if(cliente.getCpf().equals(cpf)) return cliente;
+          }
+  
+          return null;
+        }else{
+          System.out.println("+ -------------------------- +");
+          System.out.println("|   Voce precisa ser admin   |");
+          System.out.println("+ -------------------------- +");
+          return null;
+        }
       }else{
-        System.out.println("+ -------------------------- +");
-        System.out.println("|   Voce precisa ser admin   |");
-        System.out.println("+ -------------------------- +");
+        menuGeral();
         return null;
       }
-
     }
-
     public static Funcionario menuRemoveFuncionario(){
       exibeListaFuncionarios();
 
@@ -212,8 +216,23 @@ public class MenuCadastro {
         System.out.println("|     Nenhum funcionario!    |");
         System.out.println("+ -------------------------- +");  
       }
-
-
     }
 
+    public static void exibeListaClientes(){
+      System.out.println("+ -------------------------- +");
+      System.out.println("|      Lista de clientes:    |");
+      System.out.println("+ -------------------------- +");
+
+      if(!GerenciamentoUsuarios.getListaClientes().isEmpty()){
+        for(Cliente c : GerenciamentoUsuarios.getListaClientes()){
+          System.out.println("+ -------------------------- +");
+          System.out.printf("| %s - %d\n", c.getNome(), c.getIdade());
+          System.out.println("+ -------------------------- +");  
+        }
+      }else{
+        System.out.println("+ -------------------------- +");
+        System.out.println("|       Nenhum Cliente!      |");
+        System.out.println("+ -------------------------- +");  
+      }
+    }
 }

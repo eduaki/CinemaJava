@@ -5,7 +5,6 @@ import java.io.FileOutputStream;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 
 public class GerenciamentoUsuarios {
@@ -95,7 +94,7 @@ public class GerenciamentoUsuarios {
 
     public static List<Funcionario> getListaFuncionarios() {
         verificaInicializacao();
-        return new ArrayList<>(listaFuncionarios); // evitar ConcurrentModificationException
+        return new ArrayList<>(listaFuncionarios);
     }
 
     public static void adicionarFuncionario(Funcionario funcionario) {

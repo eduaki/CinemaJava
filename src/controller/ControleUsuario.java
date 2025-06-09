@@ -34,8 +34,10 @@ public class ControleUsuario {
 
     return true;
   }
-  public static void removeCadastroCliente(Cliente cliente){
+  public static boolean removeCadastroCliente(Cliente cliente){
     GerenciamentoUsuarios.removerCliente(cliente);
+
+    if(cliente == null) return false;
 
     /// atualiza o arquivo
     try(ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("src/Clientes.dat"))){
@@ -48,6 +50,8 @@ public class ControleUsuario {
     }catch(Exception e){
       e.printStackTrace();
     }
+
+    return true;
   }
 
   public static boolean adicionarFuncionario(Funcionario funcionario){
