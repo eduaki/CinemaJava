@@ -20,6 +20,8 @@ public class MenuSessao {
             switch (opcao) {
                 case 1:
                     System.out.println("Acessando filmes em cartaz...");
+                    //metodo para listar filmes
+                    MenuControleFilme.exibirMenuFilme();
                     break;
                 case 2:
                     System.out.println("Acessando compra de ingresso...");
