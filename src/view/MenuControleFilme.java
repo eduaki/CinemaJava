@@ -63,12 +63,15 @@ public class MenuControleFilme {
             private static void listarFilmes() {
                 List<Filme> filmes = Catalogo.getFilmes();
                 System.out.println("\n---- Filmes Cadastrados -----");
-                System.out.println("Filme 1" );
-                System.out.println(new Filme("Lilo e Stitch", "Animacao", 200, 10 ));
-                System.out.println("Filme 2");
-                System.out.println(new Filme("Premonicao 6", "Terror", 220, 18));
-                System.out.println("Filme 3");
-                System.out.println(new Filme("Manicreft", "Aventura", 200, 10));
+
+                if (filmes.isEmpty()){
+                    System.out.println("Nenhum filme cadastrado.");
+                } else {
+                    for (int i = 0 ; i < filmes.siz(); i++){
+                        Filme f = filmes.get(i);
+                        System.out.println((i + 1) + " - " + f.getTitulo() + " | Gênero: " + f.getGenero() + " | Duração: " + f.getDuracao() + "min | Classificação: " + f.getClassificacao());
+                    }
+                }
                 System.out.println("----------------------------------");
 
             }

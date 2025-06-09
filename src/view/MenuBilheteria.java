@@ -21,13 +21,13 @@ public class MenuBilheteria {
         int opcao;
 
         do {
-            System.out.println("+ ---------------------------- +");
+            System.out.println("o =========================== o");
             System.out.println("|         BILHETERIA          |");
-            System.out.println("+ ---------------------------- +");
+            System.out.println("o =========================== o");
             System.out.println("| 1 - Comprar Ingresso        |");
             System.out.println("| 2 - Ver Sessões Disponíveis |");
             System.out.println("| 0 - Voltar                  |");
-            System.out.println("+ ---------------------------- +");
+            System.out.println("o =========================== o");
             opcao = InputHelper.pegaInt("Opção escolhida: ");
 
             switch (opcao) {
@@ -47,13 +47,14 @@ public class MenuBilheteria {
     }
 
     private void verSessoes() {
-        System.out.println("\n--- SESSÕES DISPONÍVEIS ---");
+        System.out.println("\n*** SESSÕES DISPONÍVEIS ***");
         controleSessao.exibirSessoes(); // método que exibe sessões
     }
 
     private void comprarIngresso() {
         verSessoes();
-        int idSessao = InputHelper.pegaInt("Digite o ID da sessão desejada: ");
+        int idSessaoUsuario = InputHelper.pegaInt("Digite o ID da sessão desejada: ");
+        int idSessao = idSessaoUsuario - 1;
 
         if (!controleSessao.verificaSessao(idSessao)) {
             System.out.println("Sessão inválida.");
