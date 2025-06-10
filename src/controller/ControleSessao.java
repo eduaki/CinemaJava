@@ -58,9 +58,10 @@ import java.time.LocalTime;
             for (int i = 0 ; i < sessoes.size(); i++){
                 Sessao sessao = sessoes.get(i);
                 System.out.println((i + 1) + " - Filme: " + sessao.getFilme().getTitulo() + 
-                           " | Sala: " + sessao.getSala().getNumero() + 
-                           " | Hora: " + sessao.getHora() + 
-                           " | Ingressos disponíveis: " + sessao.getIngressoDisponivel());
+                           "\n Sala: " + sessao.getSala().getNumero() + 
+                           " - Hora: " + sessao.getHora() +
+                           "\n Ingressos disponíveis: " + sessao.getIngressoDisponivel() +
+                           "\n--------------------------------"); 
             }
         }
 
@@ -70,6 +71,15 @@ import java.time.LocalTime;
 
         public void adicionarSessao(Sessao sessao){
             sessoes.add(sessao);
+        }
+
+        public Sessao getSessaoPorId(int id){
+            if (id >= 0 && id < sessoes.size()){
+                return sessoes.get(id);
+
+            }
+            return null;
+
         }
     }
 
