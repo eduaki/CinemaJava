@@ -67,7 +67,7 @@ public class MenuControleFilme {
                 if (filmes.isEmpty()){
                     System.out.println("Nenhum filme cadastrado.");
                 } else {
-                    for (int i = 0 ; i < filmes.siz(); i++){
+                    for (int i = 0 ; i < filmes.size(); i++){
                         Filme f = filmes.get(i);
                         System.out.println((i + 1) + " - " + f.getTitulo() + " | Gênero: " + f.getGenero() + " | Duração: " + f.getDuracao() + "min | Classificação: " + f.getClassificacao());
                     }

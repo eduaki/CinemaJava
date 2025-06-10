@@ -24,7 +24,7 @@ public class MenuHistorico {
             System.out.println("| 0 - Voltar                 |");
             System.out.println("|                            |");
             System.out.println("+ -------------------------- +");
-            System.out.println("| > ");
+            System.out.print("| > ");
             optHistorico = scanner.nextInt();
             scanner.nextLine();
 
@@ -66,11 +66,14 @@ public class MenuHistorico {
         System.out.println("|     Pedidos Registrados    |");
         System.out.println("+ -------------------------- +");
 
-        if(GerenciamentoPedidos.verHistorico().isEmpty())
+        if(GerenciamentoPedidos.verHistorico().isEmpty()){
             System.out.println("| Nenhum pedido registrado!  |");
             System.out.println("+ -------------------------- +");
-        else for(Pedido p : GerenciamentoPedidos.verHistorico()){
-            System.out.printf("| %d - %s\n", p.getNumeroPedido(), (p.getCancelado() ? "Cancelado" : "Aprovado"));
+        }
+        else{
+            for(Pedido p : GerenciamentoPedidos.verHistorico()){
+                System.out.printf("| %d - %s\n", p.getNumeroPedido(), (p.getCancelado() ? "Cancelado" : "Aprovado"));
+            }
         }
 
     }
