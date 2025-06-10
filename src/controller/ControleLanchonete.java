@@ -1,5 +1,7 @@
 package controller;
 
+import java.io.FileOutputStream;
+import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.Random;
 
@@ -43,6 +45,17 @@ public class ControleLanchonete {
 
         GerenciamentoPedidos.fazerPedido(pedido);   
 
+        try(ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("src/Pedidos.dat"))){
+            List<Pedido> temp = GerenciamentoPedidos.verHistorico();
+            
+            for(Pedido p : temp){
+                os.writeObject(p);
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
         return true;
     }
 
@@ -71,6 +84,18 @@ public class ControleLanchonete {
                 return false;
             }
         }
+
+        try(ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("src/Pedidos.dat"))){
+        List<Pedido> temp = GerenciamentoPedidos.verHistorico();
+        
+            for(Pedido p : temp){
+                os.writeObject(p);
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
 
         return true;
     }

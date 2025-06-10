@@ -43,8 +43,6 @@ public class MenuHistorico {
         if(historico.isEmpty()){
             System.out.println("| Nenhum pedido registrado!  |");
             System.out.println("+ -------------------------- +");
-            System.out.println("\n");
-
         }
         else{
             for(int i = 0; i < historico.size(); i++){
@@ -67,7 +65,7 @@ public class MenuHistorico {
         System.out.println("+ -------------------------- +");
 
         if(GerenciamentoPedidos.verHistorico().isEmpty()){
-            System.out.println("| Nenhum pedido registrado!  |");
+            System.out.println("|  Nenhum pedido registrado! |");
             System.out.println("+ -------------------------- +");
         }
         else{
@@ -81,14 +79,22 @@ public class MenuHistorico {
     public static int menuCancelaPedido(){
 
         exibeListaPedidos();
+        if(MenuCadastro.menuVoltarContinuar()){
+            if(MenuCadastro.verificaAdmMenu()){
+                System.out.println("cancelamento pedido");
+                System.out.println("Nº do pedido: ");
+                System.out.print(" > ");
+                int nPedido = scanner.nextInt();
+                scanner.nextLine();
+                
+                return nPedido;
+            }
+        }else{
+            menuHistorico();
+            return 0;
+        }
+        return 0;
         
-        System.out.println("cancelamento pedido");
-        System.out.println("Nº do pedido: ");
-        System.out.print(" > ");
-        int nPedido = scanner.nextInt();
-        scanner.nextLine();
-
-        return nPedido;
     }
 
 
@@ -96,13 +102,22 @@ public class MenuHistorico {
 
         exibeListaPedidos();
 
-        System.out.println("Remover pedido");
-        System.out.println("Nº do pedido: ");
-        System.out.print(" > ");
-        int nPedido = scanner.nextInt();
-        scanner.nextLine();
+        if(MenuCadastro.menuVoltarContinuar()){
+            if(MenuCadastro.verificaAdmMenu()){
+                System.out.println("Remover pedido");
+                System.out.println("Nº do pedido: ");
+                System.out.print(" > ");
+                int nPedido = scanner.nextInt();
+                scanner.nextLine();
+        
+                return nPedido;
+            }
+        }else{
+            menuHistorico();
+            return 0;
+        }
 
-        return nPedido;
+        return 0;
     }
 
 }

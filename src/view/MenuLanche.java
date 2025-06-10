@@ -58,7 +58,6 @@ public class MenuLanche{
                             System.out.println("| - "+ GerenciamentoPedidos.pegaCardapio().get(item-1).getNome());
                         }
                         System.out.println("+ -------------------------- +");
-                        System.out.println("\n");
                         
 
                     }while( optPedido != 4);

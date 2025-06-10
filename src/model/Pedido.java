@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Pedido {
+public class Pedido implements Serializable{
 
     private List<Integer> produtos;
     private float valorTotalPedido;
@@ -41,6 +42,16 @@ public class Pedido {
     }  
     public void setCancelado(boolean cancelado) {
         this.cancelado = cancelado;
+    }
+
+    @Override
+    public String toString() {
+        return "Pedido {" +
+            "numeroPedido=" + numeroPedido +
+            ", produtos=" + produtos +
+            ", valorTotalPedido=" + valorTotalPedido +
+            ", cancelado=" + cancelado +
+            '}';
     }
 
 }
