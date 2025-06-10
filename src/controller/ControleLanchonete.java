@@ -13,13 +13,13 @@ public class ControleLanchonete {
 
     private static Random random = new Random();
 
-    static int numeroPedido = 1000 + random.nextInt(9999);
-    static float valorTotalPedido = 0;
-
+    
     static List<Produto> cardapio = GerenciamentoPedidos.pegaCardapio();
-
-    public static void fazerPedido(List<Integer> itensPedido){
-
+    
+    public static boolean fazerPedido(List<Integer> itensPedido){
+        
+         int numeroPedido = 1000 + random.nextInt(9999);
+        float valorTotalPedido = 0;
 
         for (int item : itensPedido) {
 
@@ -33,9 +33,17 @@ public class ControleLanchonete {
 
 
         Pedido pedido = new Pedido(itensPedido, valorTotalPedido, numeroPedido);
-        GerenciamentoPedidos.fazerPedido(pedido);   
-        
 
+        for(Pedido p : GerenciamentoPedidos.verHistorico()){
+            if(numeroPedido == p.getNumeroPedido()){
+                System.out.println("pedido ja existente");
+                return false;
+            }
+        }
+
+        GerenciamentoPedidos.fazerPedido(pedido);   
+
+        return true;
     }
 
 
@@ -43,10 +51,28 @@ public class ControleLanchonete {
         List<Pedido> historico = GerenciamentoPedidos.verHistorico();
 
         MenuHistorico.exibirHistorico(historico, cardapio);
-
       
     }
 
+    public static boolean cancelarPedido(int numeroPedido){
+        return GerenciamentoPedidos.cancelarPedido(numeroPedido);
+    }
 
+    public static boolean removerPedido(int nPedido){
+        List<Pedido> listaPedidos = GerenciamentoPedidos.verHistorico();
+
+        if(listaPedidos.isEmpty()) return false;
+
+        for(Pedido p : listaPedidos){
+            if(p.getNumeroPedido() == nPedido){
+                GerenciamentoPedidos.removePedido(p);
+            }else{
+                System.out.println("[Pedido não encontrado!]");
+                return false;
+            }
+        }
+
+        return true;
+    }
 
 }

@@ -24,7 +24,7 @@ public class MenuCadastro {
             System.out.println("| 4 - Remover funcionário    |");
             System.out.println("| 0 - Voltar                 |");
             System.out.println("+ -------------------------- +");
-            System.out.print(" > ");
+            System.out.print("| > ");
 
             opt = leitor.nextInt();
             leitor.nextLine();

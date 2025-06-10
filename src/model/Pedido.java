@@ -7,6 +7,7 @@ public class Pedido {
     private List<Integer> produtos;
     private float valorTotalPedido;
     private int numeroPedido;
+    private boolean cancelado = false;
 
     public Pedido(List<Integer> itensPedido, float valorTotalPedido, int numeroPedido){
         this.produtos = itensPedido;
@@ -33,6 +34,13 @@ public class Pedido {
     }
     public void setNumeroPedido(int numeroPedido) {
         this.numeroPedido = numeroPedido;
+    }
+    
+    public boolean getCancelado(){
+        return cancelado;
+    }  
+    public void setCancelado(boolean cancelado) {
+        this.cancelado = cancelado;
     }
 
 }

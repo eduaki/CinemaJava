@@ -21,12 +21,32 @@ public class GerenciamentoPedidos {
 
     public static void fazerPedido(Pedido pedido){
         listaPedido.add(pedido);
-
     }
 
     public static List<Pedido> verHistorico(){
         return listaPedido;
     }
 
+    public static boolean cancelarPedido(int numeroPedido){
+
+        for(Pedido p : listaPedido){
+            if(p.getNumeroPedido() == numeroPedido){
+                p.setCancelado(true);
+                return true;
+            }else{
+                return false;
+            }
+        }
+
+        return false;
+
+    }
+
+    public static List<Pedido> removePedido(Pedido pedido){
+
+        listaPedido.remove(pedido);        
+
+        return listaPedido;
+    }
 
 }
