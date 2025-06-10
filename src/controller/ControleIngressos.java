@@ -25,7 +25,7 @@ public class ControleIngressos {
      return false;
   }
 
-    sessao.setIngressoDisponivel(sessao.get.getIngressoDisponivel() - 1);
+    sessao.setIngressoDisponivel(sessao.getIngressoDisponivel() - 1);
 
 
     
