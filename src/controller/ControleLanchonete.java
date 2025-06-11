@@ -15,26 +15,17 @@ public class ControleLanchonete {
 
     private static Random random = new Random();
 
-    
     static List<Produto> cardapio = GerenciamentoPedidos.pegaCardapio();
     
     public static boolean fazerPedido(List<Integer> itensPedido){
         
-         int numeroPedido = 1000 + random.nextInt(9999);
+        int numeroPedido = 1000 + random.nextInt(9999);
         float valorTotalPedido = 0;
 
         for (int item : itensPedido) {
-
-            System.out.println(item);
             float valorProduto = cardapio.get(item-1).getValor();
-
             valorTotalPedido += valorProduto;
-            
         }
-        MenuLanche.pedidoFinalizado(itensPedido, cardapio, valorTotalPedido);
-
-
-        Pedido pedido = new Pedido(itensPedido, valorTotalPedido, numeroPedido);
 
         for(Pedido p : GerenciamentoPedidos.verHistorico()){
             if(numeroPedido == p.getNumeroPedido()){
@@ -43,15 +34,15 @@ public class ControleLanchonete {
             }
         }
 
-        GerenciamentoPedidos.fazerPedido(pedido);   
+        MenuLanche.pedidoFinalizado(itensPedido, cardapio, valorTotalPedido); /// exibe resumo do pedido
 
-        try(ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("src/Pedidos.dat"))){
+        Pedido pedido = new Pedido(itensPedido, valorTotalPedido, numeroPedido);
+
+        GerenciamentoPedidos.fazerPedido(pedido); /// gera o pedido efetivamente
+
+        try(ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("src/Pedidos.txt"))){
             List<Pedido> temp = GerenciamentoPedidos.verHistorico();
-            
-            for(Pedido p : temp){
-                os.writeObject(p);
-            }
-
+            os.writeObject(temp);
         }catch(Exception e){
             e.printStackTrace();
         }
@@ -85,13 +76,9 @@ public class ControleLanchonete {
             }
         }
 
-        try(ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("src/Pedidos.dat"))){
-        List<Pedido> temp = GerenciamentoPedidos.verHistorico();
-        
-            for(Pedido p : temp){
-                os.writeObject(p);
-            }
-
+        try(ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("src/Pedidos.txt"))){
+            List<Pedido> temp = GerenciamentoPedidos.verHistorico();
+            os.writeObject(temp);
         }catch(Exception e){
             e.printStackTrace();
         }

@@ -44,23 +44,27 @@ public class GerenciamentoUsuarios {
 
     @SuppressWarnings("unchecked")
     public static void inicializaDados() {
-        try (ObjectInputStream oisClientes = new ObjectInputStream(new FileInputStream("src/Clientes.dat"))) {
+        try (ObjectInputStream oisClientes = new ObjectInputStream(new FileInputStream("src/Clientes.txt"))) {
             listaClientes = (List<Cliente>) oisClientes.readObject();
         } catch (Exception e) {
             listaClientes = new ArrayList<>();
+            System.err.println("Erro ao ler arquivo de Clientes: " + e.getMessage());
+            salvarClientes();
         }
 
-        try (ObjectInputStream oisFuncionarios = new ObjectInputStream(new FileInputStream("src/Funcionarios.dat"))) {
+        try (ObjectInputStream oisFuncionarios = new ObjectInputStream(new FileInputStream("src/Funcionarios.txt"))) {
             listaFuncionarios = (List<Funcionario>) oisFuncionarios.readObject();
         } catch (Exception e) {
+            System.err.println("Erro ao ler arquivo de Funcionarios: " + e.getMessage());
             listaFuncionarios = new ArrayList<>();
+            salvarFuncionarios();
         }
 
         dadosCarregados = true;
     }
 
     public static void salvarFuncionarios() {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("src/Funcionarios.dat"))) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("src/Funcionarios.txt"))) {
             oos.writeObject(listaFuncionarios);
         } catch (Exception e) {
             e.printStackTrace();
@@ -68,7 +72,7 @@ public class GerenciamentoUsuarios {
     }
 
     public static void salvarClientes() {
-        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("src/Clientes.dat"))) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream("src/Clientes.txt"))) {
             oos.writeObject(listaClientes);
         } catch (Exception e) {
             e.printStackTrace();

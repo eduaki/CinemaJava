@@ -1,6 +1,5 @@
 package model;
 
-import java.io.EOFException;
 import java.io.FileInputStream;
 import java.io.ObjectInputStream;
 import java.util.ArrayList;
@@ -22,27 +21,21 @@ public class GerenciamentoPedidos {
     @SuppressWarnings("unchecked")
     public static void inicializaDados(){
         if(!dadosCarregados){
-            try (ObjectInputStream os = new ObjectInputStream(new FileInputStream("src/Pedidos.dat"))){
-                List<Pedido> temp = (List<Pedido>) os.readObject();
-
-                listaPedido = temp;
-
-                dadosCarregados = true;
+            try (ObjectInputStream os = new ObjectInputStream(new FileInputStream("src/Pedidos.txt"))){
+                listaPedido = (List<Pedido>) os.readObject();
             } catch (Exception e) {
-                e.printStackTrace();
-                // listaPedido = new ArrayList<>();
+                listaPedido = new ArrayList<>();
             }
         }
+        dadosCarregados = true;
     }
     
 
     public static List<Produto> pegaCardapio(){
-        inicializaDados();
         return cardapio;
     }
 
     public static void fazerPedido(Pedido pedido){
-        inicializaDados();
         listaPedido.add(pedido);
     }
 
@@ -52,9 +45,6 @@ public class GerenciamentoPedidos {
     }
 
     public static boolean cancelarPedido(int numeroPedido){
-
-        inicializaDados();
-
         for(Pedido p : listaPedido){
             if(p.getNumeroPedido() == numeroPedido){
                 p.setCancelado(true);
@@ -65,7 +55,6 @@ public class GerenciamentoPedidos {
         }
 
         return false;
-
     }
 
     public static List<Pedido> removePedido(Pedido pedido){

@@ -21,13 +21,9 @@ public class ControleUsuario {
     GerenciamentoUsuarios.adicionarCliente(cliente);
     
     /// atualiza o arquivo
-    try(ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("src/Clientes.dat"))){
+    try(ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("src/Clientes.txt"))){
       List<Cliente> listaClientes = GerenciamentoUsuarios.getListaClientes();
-
-      for(Cliente c : listaClientes){
-        os.writeObject(c);
-      }
-
+      os.writeObject(listaClientes);
     }catch(Exception e){
       e.printStackTrace();
     }
@@ -40,13 +36,9 @@ public class ControleUsuario {
     if(cliente == null) return false;
 
     /// atualiza o arquivo
-    try(ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("src/Clientes.dat"))){
-    List<Cliente> listaClientes = GerenciamentoUsuarios.getListaClientes();
-
-    for(Cliente c : listaClientes){
-      os.writeObject(c);
-    }
-
+    try(ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("src/Clientes.txt"))){
+      List<Cliente> listaClientes = GerenciamentoUsuarios.getListaClientes();
+      os.writeObject(listaClientes);
     }catch(Exception e){
       e.printStackTrace();
     }
@@ -68,13 +60,9 @@ public class ControleUsuario {
     GerenciamentoUsuarios.adicionarFuncionario(funcionario);
 
     /// atualiza o arquivo
-    try(ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("src/Funcionarios.dat"))){
+    try(ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("src/Funcionarios.txt"))){
       List<Funcionario> listaFuncionarios = GerenciamentoUsuarios.getListaFuncionarios();
-
-      for(Funcionario f : listaFuncionarios){
-        os.writeObject(f);
-      }
-
+      os.writeObject(listaFuncionarios);
     }catch(Exception e){
       e.printStackTrace();
     }
@@ -86,13 +74,9 @@ public class ControleUsuario {
     GerenciamentoUsuarios.removerFuncionario(funcionario);
 
     /// atualiza o arquivo
-    try(ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("src/Funcionarios.dat"))){
+    try(ObjectOutputStream os = new ObjectOutputStream(new FileOutputStream("src/Funcionarios.txt"))){
     List<Funcionario> listaFuncionarios = GerenciamentoUsuarios.getListaFuncionarios();
-
-    for(Funcionario f : listaFuncionarios){
-      os.writeObject(f);
-    }
-
+      os.writeObject(listaFuncionarios);
     }catch(Exception e){
       e.printStackTrace();
     }

@@ -14,7 +14,7 @@ public class Funcionario extends Pessoa{
         super(nome, email, cpf, idade);
         this.matricula = matricula;
         this.salario = salario;
-        this.admin = admin; /// vai ser usada para verificar se o usuário é um administrador
+        this.admin = admin;
         this.senha = senha;
     }
 
@@ -57,5 +57,22 @@ public class Funcionario extends Pessoa{
     public void removeFilme(Filme filme){
         Catalogo.removerFilme(filme);
     }  
+
+    @Override
+    public String toString() {
+        String objeto = String.format("""
+                    Funcionario{
+                    nome = %s, 
+                    email = %s, 
+                    cpf = %s, 
+                    idade = %d,
+                    matricula = %d,
+                    salario = %f,
+                    admin = %b,
+                    senha = %s
+                    }
+                """, nome, email, cpf, idade, matricula, salario, admin, senha);
+        return objeto;
+    }
 
 }
