@@ -76,14 +76,26 @@ public class MenuBilheteria {
         System.out.println("Inteira: R$ " + sessao.getPrecoInteira());
         System.out.println("Meia entrada: R$ " + sessao.getPrecoMeia());
         int quantidade = InputHelper.pegaInt("Quantos ingressos deseja comprar?: ");
+        double totalCompra = 0.0;
 
-        for (int i = 0; i < quantidade; i++) {
+         for (int i = 0; i < quantidade; i++) {
             System.out.println("-------------------------------------");
-            System.out.println("Escolha o tipo de ingresso:");
-            System.out.println("1 - Inteira");
-            System.out.println("2 - Meia Entrada");
-            int tipoIngresso = InputHelper.pegaInt("Opção escolhida: ");
-            System.out.println("-------------------------------------");
+
+            int tipoIngresso;
+            do {
+                System.out.println("Escolha o tipo de ingresso:");
+                System.out.println("1 - Inteira");
+                System.out.println("2 - Meia Entrada");
+                tipoIngresso = InputHelper.pegaInt("Opção escolhida: ");
+                System.out.println("-------------------------------------");
+
+                if (tipoIngresso != 1 && tipoIngresso != 2) {
+                    System.out.println("\u001B[31mErro: Escolha inválida! Digite 1 para Inteira ou 2 para Meia Entrada.\u001B[0m");
+                    System.out.println("-------------------------------------\n");
+                }
+            } while (tipoIngresso != 1 && tipoIngresso != 2);
+            
+
             boolean meiaEntrada = (tipoIngresso == 2);
 
             System.out.println("\nEscolha um assento disponível para o ingresso " + ": ");

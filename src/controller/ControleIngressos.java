@@ -23,7 +23,9 @@ public class ControleIngressos {
         Sala sala = sessao.getSala();
 
         if (!sala.assentoExiste(assento)) {
-            System.out.println("\n\u001B[31mErro: Assento não existe!\u001B[0m");
+            System.out.println("\n-------------------------------------");
+            System.out.println("\u001B[31mErro: Assento não existe!\u001B[0m");
+            System.out.println("-------------------------------------\n");
             return false;
         }
 
