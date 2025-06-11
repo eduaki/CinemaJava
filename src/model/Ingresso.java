@@ -4,13 +4,15 @@ public class Ingresso {
     private Cliente cliente;
     private Sessao sessao;
     private boolean meiaEntrada;
-    private double preco; // Adicionando preço do ingresso
+    private String assento;
+    private double preco;
 
-    public Ingresso(Cliente cliente, Sessao sessao, boolean meiaEntrada) {
+    public Ingresso(Cliente cliente, Sessao sessao, boolean meiaEntrada, String assento) {
         this.cliente = cliente;
         this.sessao = sessao;
         this.meiaEntrada = meiaEntrada;
-        this.preco = meiaEntrada ? sessao.getPrecoMeia() : sessao.getPrecoInteira(); // Define o preço conforme o tipo
+        this.assento = assento; 
+        this.preco = meiaEntrada ? sessao.getPrecoMeia() : sessao.getPrecoInteira();
     }
 
     public Cliente getCliente() {
@@ -23,6 +25,10 @@ public class Ingresso {
 
     public boolean isMeiaEntrada() {
         return meiaEntrada;
+    }
+
+    public String getAssento() {
+        return assento;
     }
 
     public double getPreco() {

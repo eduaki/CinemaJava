@@ -3,6 +3,7 @@ package view;
 import controller.ControleIngressos;
 import controller.ControleSessao;
 import model.Cliente;
+import model.Sala;
 import model.Sessao;
 import utilidades.InputHelper;
 
@@ -52,8 +53,8 @@ public class MenuBilheteria {
     }
 
     private void verSessoes() {
-        System.out.println("\n*** SESSÕES DISPONÍVEIS ***\n");
-        controleSessao.exibirSessoes(); // método que exibe sessões
+        System.out.println("\n\t<<< SESSÕES DISPONÍVEIS >>>\n");
+        controleSessao.exibirSessoes();
     }
 
     private void comprarIngresso() {
@@ -62,55 +63,57 @@ public class MenuBilheteria {
         int idSessao = idSessaoUsuario - 1;
 
         if (!controleSessao.verificaSessao(idSessao)) {
-            System.out.println("\n\u001B[31mSessão inválida.\u001B[0m\n");
+            System.out.println("\n-------------------------------------");
+            System.out.println("\u001B[31mSessão inválida.\u001B[0m");
+            System.out.println("-------------------------------------\n");
             return;
         }
 
         Sessao sessao = controleSessao.getSessaoPorId(idSessao);
+        Sala sala = sessao.getSala();
 
         System.out.println("\nPreço dos ingressos:");
         System.out.println("Inteira: R$ " + sessao.getPrecoInteira());
         System.out.println("Meia entrada: R$ " + sessao.getPrecoMeia());
-
         int quantidade = InputHelper.pegaInt("Quantos ingressos deseja comprar?: ");
-        System.out.println("Escolha o tipo de ingresso: ");
-        System.out.println("\n1 >> INTEIRA");
-        System.out.println("2 >> MEIA ENTRADA");
-        int tipoIngresso = InputHelper.pegaInt("Opção escolhida: ");
 
-        boolean meiaEntrada = (tipoIngresso == 2);
+        for (int i = 0; i < quantidade; i++) {
+            System.out.println("-------------------------------------");
+            System.out.println("Escolha o tipo de ingresso:");
+            System.out.println("1 - Inteira");
+            System.out.println("2 - Meia Entrada");
+            int tipoIngresso = InputHelper.pegaInt("Opção escolhida: ");
+            System.out.println("-------------------------------------");
+            boolean meiaEntrada = (tipoIngresso == 2);
 
-        boolean sucesso = controleIngressos.venderIngresso(cliente, idSessao, quantidade, meiaEntrada);
+            System.out.println("\nEscolha um assento disponível para o ingresso " + ": ");
+            String assentoEscolhido = InputHelper.pegaString("Digite a letra e o número do assento (Ex: A1): ");
 
-        if (sucesso) {
-            double precoFinal = meiaEntrada ? sessao.getPrecoMeia() * quantidade : sessao.getPrecoInteira() * quantidade;
-            System.out.println("\n\u001B[32m" + " COMPRA EFETUADA COM SUCESSO!\u001B[0m\n");
-            System.out.println("\t\u001B[32mBOM FILME!\u001B[0m\n");
-
-        } else {
-            System.out.println("\n\u001B[31mErro ao comprar ingresso. Talvez não haja mais lugares!\u001B[0m\n");
+            boolean sucesso = controleIngressos.venderIngresso(cliente, idSessao, meiaEntrada, assentoEscolhido);
+            if (!sucesso) {
+                i--;
+            }
         }
+
+        System.out.println("\n\u001B[32mCOMPRA EFETUADA COM SUCESSO!\u001B[0m");
+        System.out.println("\t\u001B[32mBOM FILME!\u001B[0m\n");
     }
 
-    private void cancelarIngresso(){
+    private void cancelarIngresso() {
         verSessoes();
-
         int idSessaoUsuario = InputHelper.pegaInt("\nDigite o ID da sessão para cancelamento: ");
         int idSessao = idSessaoUsuario - 1;
-        if (!controleSessao.verificaSessao(idSessao)){
 
-            System.out.println("\n\u001B[31mSessao inválida.\u001B[0m\n");
+        if (!controleSessao.verificaSessao(idSessao)) {
+            System.out.println("\n\u001B[31mSessão inválida.\u001B[0m\n");
             return;
         }
 
         boolean sucesso = controleIngressos.cancelarIngresso(cliente, idSessao);
-
-        if(sucesso){
-
+        if (sucesso) {
             System.out.println("\n\u001B[32mCancelamento efetuado com sucesso.\u001B[0m\n");
         } else {
-            System.out.println("\n\u001B[31mErro ao cancelar ingresso.\u001B[0m\n");
+            //System.out.println("\n\u001B[31mErro ao cancelar ingresso.\u001B[0m\n");
         }
-
     }
 }

@@ -17,8 +17,9 @@ import java.time.LocalTime;
     public static ControleSessao criarComSessoesPadrao(){
         ControleSessao controle  = new ControleSessao();
 
-        Sala sala1 = new Sala (1, 10);
-        Sala sala2 = new Sala (2, 10);
+        Sala sala1 = new Sala (1);
+        Sala sala2 = new Sala (2);
+        Sala sala3 = new Sala (3);
 
         List<Filme> filmes = Catalogo.getFilmes();
 
@@ -28,7 +29,7 @@ import java.time.LocalTime;
                 controle.adicionarSessao(new Sessao(filmes.get(1), sala2, LocalTime.of(20, 0)));
             }
             if (filmes.size() > 2) {
-                controle.adicionarSessao(new Sessao(filmes.get(2), sala1, LocalTime.of(22, 15)));
+                controle.adicionarSessao(new Sessao(filmes.get(2), sala3, LocalTime.of(22, 15)));
         }
     }
 
@@ -58,10 +59,10 @@ import java.time.LocalTime;
             for (int i = 0 ; i < sessoes.size(); i++){
                 Sessao sessao = sessoes.get(i);
                 System.out.println((i + 1) + " - Filme: " + sessao.getFilme().getTitulo() + 
-                           "\n Sala: " + sessao.getSala().getNumero() + 
-                           " - Hora: " + sessao.getHora() +
-                           "\n Ingressos disponíveis: " + sessao.getIngressoDisponivel() +
-                           "\n--------------------------------"); 
+                           "\n    Sala: " + sessao.getSala().getNumero() + 
+                           "    - Hora: " + sessao.getHora() +
+                           "\n    Ingressos disponíveis: " + sessao.getIngressoDisponivel() +
+                           "\n-------------------------------------"); 
             }
         }
 

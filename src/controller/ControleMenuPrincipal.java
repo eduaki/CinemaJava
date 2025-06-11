@@ -16,14 +16,10 @@
                 MenuSessao.exibirMenuSessao();
                 break;
             case 2:
-                // Simulando login de cliente (substituir depois com tela de login)
-                Cliente cliente = new Cliente("Alex", "alex@email.com", "12345678900", 33);
-
-                // Criar controladores
+                Cliente cliente = new Cliente("Teste", "teste@email.com", "12345678900", 20);
                 ControleSessao controleSessao = ControleSessao.criarComSessoesPadrao();
                 ControleIngressos controleIngressos = new ControleIngressos(controleSessao);
 
-                // Criar MenuBilheteria e exibir
                 MenuBilheteria menuBilheteria = new MenuBilheteria(cliente, controleIngressos, controleSessao);
                 menuBilheteria.exibirMenu();
                 break;

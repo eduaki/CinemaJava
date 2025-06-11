@@ -1,33 +1,71 @@
 package model;
 
-public class Sala{
-//    int assentoDisponivel;
+import java.util.HashMap;
+import java.util.Map;
+
+public class Sala {
+
     private int numero;
     private int capacidade;
+    private Map<String, Boolean> assentos;
 
-  public Sala(int numero, int capacidade) {
-      this.numero = numero;
-       this.capacidade = capacidade;
-  }
+    public Sala(int numero) {
+        this.numero = numero;
+        this.capacidade = 30;
+        this.assentos = new HashMap<>();
 
-//getters e set
-  public int getNumero() {
-      return this.numero;
-  }
+        char[] fileiras = {'A', 'B', 'C', 'D', 'E'};
+        int assentosPorFileira = 6;
+
+            for (char fileira : fileiras) {
+              for (int i = 1; i <= assentosPorFileira; i++){
+                assentos.put(fileira + String.valueOf(i), true);
+              }
+                
+            }
+        }
+
+    public boolean assentoExiste(String assento) {
+        return assentos.containsKey(assento);
+    }
+
+    public boolean verificarDisponibilidade(String assento) {
+        return assentoExiste(assento) && assentos.get(assento);
+    }
+
+    public boolean reservarAssento(String assento) {
+        if (assentoExiste(assento) && assentos.get(assento)) {
+            assentos.put(assento, false);
+            return true;
+        } else {
+            System.out.println("\n\u001B[31mErro: Assento já está ocupado ou não existe!\u001B[0m");
+            return false;
+        }
+    }
+
+    public void liberarAssento(String assento) {
+        assentos.put(assento, true);
+    }
+
+    public int getNumero() {
+        return this.numero;
+    }
+
     public void setNumero(int numero) {
-      this.numero = numero;
-  }
+        this.numero = numero;
+    }
 
     public int getCapacidade() {
-      return this.capacidade;
-  }
+        return this.capacidade;
+    }
+
     public void setCapacidade(int capacidade) {
-      this.capacidade = capacidade;
-  }
+        this.capacidade = capacidade;
+    }
 
     @Override
     public String toString() {
-      return this.numero + " - " + this.capacidade;
+        return this.numero + " - " + this.capacidade;
     }
 }
 
