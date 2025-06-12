@@ -23,15 +23,15 @@ public class MenuBilheteria {
         int opcao;
 
         do {
-            System.out.println("o =============================== o");
-            System.out.println("|           BILHETERIA            |");
-            System.out.println("o =============================== o");
-            System.out.println("| 1 - Comprar Ingresso            |");
-            System.out.println("| 2 - Ver Sessões Disponíveis     |");
-            System.out.println("| 3 - Cancelar compra de ingresso |");
-            System.out.println("| 0 - Voltar                      |");
-            System.out.println("o =============================== o");
-            opcao = InputHelper.pegaInt("Escolha uma opção: ");
+            System.out.println("+ -------------------------- +");
+            System.out.println("|         Bilheteria         |");
+            System.out.println("+ -------------------------- +");
+            System.out.println("| 1 - Comprar Ingresso       |");
+            System.out.println("| 2 - Sessões Disponíveis    |");
+            System.out.println("| 3 - Cancelar ingresso      |");
+            System.out.println("| 0 - Voltar                 |");
+            System.out.println("+ -------------------------- +");
+            opcao = InputHelper.pegaInt("| > ");
 
             switch (opcao) {
                 case 1:
@@ -43,17 +43,24 @@ public class MenuBilheteria {
                 case 3:
                     cancelarIngresso();
                     break;
-                case 0:
-                    System.out.println("Voltando ao menu principal...");
-                    break;
+                case 0: 
+                /// só pra não dar erro
+                break;
                 default:
-                    System.out.println("\n\u001B[31mOpção inválida!\u001B[0m\n");
+                
+                
+                    System.out.println(" ---------------------------- ");
+                    System.out.println("| \u001B[31mOpção inválida!\u001B[0m            |");
+                    System.out.println(" ---------------------------- ");
+
             }
         } while (opcao != 0);
     }
 
     private void verSessoes() {
-        System.out.println("\n\t<<< SESSÕES DISPONÍVEIS >>>\n");
+        System.out.println("+ -------------------------- +");
+        System.out.println("|    Sessões disponíveis:    |");
+        System.out.println("+ -------------------------- +");
         controleSessao.exibirSessoes();
     }
 
@@ -63,9 +70,9 @@ public class MenuBilheteria {
         int idSessao = idSessaoUsuario - 1;
 
         if (!controleSessao.verificaSessao(idSessao)) {
-            System.out.println("\n-------------------------------------");
-            System.out.println("\u001B[31mSessão inválida.\u001B[0m");
-            System.out.println("-------------------------------------\n");
+            System.out.println(" ---------------------------- ");
+            System.out.println("| \u001B[31mSessão inválida!\u001B[0m           |");
+            System.out.println(" ---------------------------- ");
             return;
         }
 

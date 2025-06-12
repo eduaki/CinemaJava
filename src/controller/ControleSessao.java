@@ -7,8 +7,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.time.LocalTime;
 
-    public class ControleSessao{
-        private List<Sessao> sessoes;
+public class ControleSessao{
+    private List<Sessao> sessoes;
 
     public ControleSessao(){
         this.sessoes = new ArrayList<>();
@@ -30,13 +30,13 @@ import java.time.LocalTime;
             }
             if (filmes.size() > 2) {
                 controle.adicionarSessao(new Sessao(filmes.get(2), sala3, LocalTime.of(22, 15)));
+            }
         }
-    }
 
         return controle;
 
-}
-    
+    }
+
     public List<Sessao> listarSessoes() {
         return sessoes;
     }
@@ -51,36 +51,41 @@ import java.time.LocalTime;
         return resultado;
     }
 
-        public void exibirSessoes() {
-            if(sessoes.isEmpty()) {
-                System.out.println("Nenhuma sessão disponível.");
-                return;
-            }
-            for (int i = 0 ; i < sessoes.size(); i++){
-                Sessao sessao = sessoes.get(i);
-                System.out.println((i + 1) + " - Filme: " + sessao.getFilme().getTitulo() + 
-                           "\n    Sala: " + sessao.getSala().getNumero() + 
-                           "    - Hora: " + sessao.getHora() +
-                           "\n    Ingressos disponíveis: " + sessao.getIngressoDisponivel() +
-                           "\n-------------------------------------"); 
-            }
+    public void exibirSessoes() {
+        if(sessoes.isEmpty()) {
+            System.out.println("Nenhuma sessão disponível.");
+            return;
         }
-
-        public boolean verificaSessao(int idSessao) {
-            return idSessao >= 0 && idSessao < sessoes.size();
-        }
-
-        public void adicionarSessao(Sessao sessao){
-            sessoes.add(sessao);
-        }
-
-        public Sessao getSessaoPorId(int id){
-            if (id >= 0 && id < sessoes.size()){
-                return sessoes.get(id);
-
-            }
-            return null;
-
+        for (int i = 0 ; i < sessoes.size(); i++){
+            Sessao sessao = sessoes.get(i);
+            System.out.printf("""
+                                |   | Filme: %s
+                                | %d | Sala: %d (%s)
+                                |   | acentos livres: %d
+                                + -------------------------- +
+                                """, sessao.getFilme().getTitulo(),(i+1), sessao.getSala().getNumero(), sessao.getHora(), sessao.getIngressoDisponivel());
+            // System.out.println((i + 1) + " - Filme: " + sessao.getFilme().getTitulo() + 
+            //                              "\n    Sala: " + sessao.getSala().getNumero() + 
+            //                              "    - Hora: " + sessao.getHora() +
+            //                              "\n    Ingressos disponíveis: " + sessao.getIngressoDisponivel() +
+            //                              "\n-------------------------------------"); 
         }
     }
+
+    public boolean verificaSessao(int idSessao) {
+        return idSessao >= 0 && idSessao < sessoes.size();
+    }
+
+    public void adicionarSessao(Sessao sessao){
+        sessoes.add(sessao);
+    }
+
+    public Sessao getSessaoPorId(int id){
+        if (id >= 0 && id < sessoes.size()){
+            return sessoes.get(id);
+        }
+        return null;
+
+    }
+}
 

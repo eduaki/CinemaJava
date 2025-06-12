@@ -17,13 +17,13 @@ public class Sala {
         char[] fileiras = {'A', 'B', 'C', 'D', 'E'};
         int assentosPorFileira = 6;
 
-            for (char fileira : fileiras) {
-              for (int i = 1; i <= assentosPorFileira; i++){
-                assentos.put(fileira + String.valueOf(i), true);
-              }
-                
+        for (char fileira : fileiras) {
+            for (int i = 1; i <= assentosPorFileira; i++){
+            assentos.put(fileira + String.valueOf(i), true);
             }
+            
         }
+    }
 
     public boolean assentoExiste(String assento) {
         return assentos.containsKey(assento);

@@ -11,7 +11,6 @@ public class Catalogo {
             filmes.add(new Filme("Lilo & Stitch","Aventura", 108, 10));
             filmes.add(new Filme("Premonição 6: Laços de sangue","Terror",110, 18));
             filmes.add(new Filme("Minecraft","Comédia",101, 10));
-            
         }
 
         public static void cadastrarFilme(Filme filme) {
