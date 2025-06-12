@@ -8,7 +8,7 @@ public class Catalogo {
         private static List<Filme> filmes = new ArrayList<>();
 
         static{
-            filmes.add(new Filme("Lilo & Stitch","Aventura", 108, 10));
+            filmes.add(new Filme("Lilo & Stitch","Animacao", 108, 10));
             filmes.add(new Filme("Premonição 6: Laços de sangue","Terror",110, 18));
             filmes.add(new Filme("Minecraft","Comédia",101, 10));
         }
@@ -17,7 +17,7 @@ public class Catalogo {
             filmes.add(filme);
         }
 
-        public static void removerFilme(Filme filme) {
+        public static void removerFilmePorID(Filme filme) {
             filmes.remove(filme);
         }
 

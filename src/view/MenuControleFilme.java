@@ -29,7 +29,7 @@ public class MenuControleFilme {
                             listarFilmes();
                             break;
                         case 3:
-//                            removerFilme();
+                            removerFilme();
                             break;
                         case 4:
                             System.out.println("Voltando ao menu principal...");
@@ -75,6 +75,21 @@ public class MenuControleFilme {
                 System.out.println("----------------------------------");
 
             }
-        }
 
+            private static void removerFilme(){
+                listarFilmes();
+                
+                if(Catalogo.getFilmes().isEmpty()){
+                    System.out.println("Não ha filmes para remover");
+                }
+            
+                System.out.println("Digite o ID do filme para remover: ");
+                int tituloParaRemover = scanner.nextInt();
+
+                System.out.println("Filme removido com sucesso ... retornando menu filme");
+
+            
+            }
+        }
+    
 

@@ -46,14 +46,13 @@ public class Funcionario extends Pessoa{
         this.senha = senha;
     }
 
-
-    /// Funções relacionadas ao gerenciamento de filmes/catalogo
     public void adicionaFilme(Filme filme){
-        //// faz parte da bilheteria
+        
     }
     public void cadastraFilme(Filme filme){
         Catalogo.cadastrarFilme(filme);
     }
+
     public void removeFilme(Filme filme){
         Catalogo.removerFilme(filme);
     }  
