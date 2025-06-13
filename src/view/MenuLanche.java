@@ -70,7 +70,7 @@ public class MenuLanche{
                 
                     break;
                 case 4:
-                    System.out.println("Voltando ao menu principal");;
+                    MenuEstoque.exibirMenu();
                     break;
                 case 0:
                     MenuPrincipal.exibirMenuPrincipal();
