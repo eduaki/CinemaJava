@@ -8,27 +8,25 @@ public class MenuSessao {
         int opcao;
 
         do {
-            System.out.println("\nMenu Sessao Cine Compila");
-            System.out.println("1 - Filmes em cartaz");
-            System.out.println("2 - Comprar ingresso");
-            System.out.println("3 - Escolher sala de cinema");
-            System.out.println("4 - Escolher horario");
-            System.out.println("5 - Voltar ao menu principal");
-            System.out.print("Digite sua opcao desejada: ");
+            System.out.print(   """
+                                  + -------------------------- +
+                                  |          Catálogo:         |
+                                  | ---------------------------|
+                                  """);
+            System.out.println("| 1 - Filmes em cartaz       |");
+            System.out.println("| 2 - Comprar ingresso       |");
+            System.out.println("| 0 - Voltar                 |");
+            System.out.println("+ -------------------------- +");
+            System.out.print("| > ");
             opcao = scanner.nextInt();
+            System.out.println("+ -------------------------- +");
 
             switch (opcao) {
                 case 1:
                     MenuControleFilme.listarFilmes();;
                     break;
                 case 2:
-                    MenuBilheteria.comprarIngresso();
-                    break;
-                case 3:
-                    System.out.println("Acessando sala");
-                    break;
-                case 4:
-                    System.out.println("Acessando horarios");
+                    MenuBilheteria.exibirMenu();
                     break;
                 case 0:
                     MenuPrincipal.exibirMenuPrincipal();

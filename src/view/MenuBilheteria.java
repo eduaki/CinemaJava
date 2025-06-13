@@ -25,7 +25,7 @@ public class MenuBilheteria {
         MenuBilheteria.controleSessao = controleSessao;
     }
 
-    public void exibirMenu() {
+    public static void exibirMenu() {
         int opcao;
 
         do {
@@ -156,7 +156,7 @@ public class MenuBilheteria {
         }
     }
 
-    private void cancelarIngresso() {
+    private static void cancelarIngresso() {
         verSessoes();
         int idSessaoUsuario = InputHelper.pegaInt("\nDigite o ID da sessão para cancelamento: ");
         int idSessao = idSessaoUsuario - 1;

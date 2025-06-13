@@ -12,7 +12,6 @@
 
         switch (opt) {
             case 1:
-                System.out.println("Acessando o catalogo...");
                 MenuSessao.exibirMenuSessao();
                 break;
             case 2:
@@ -21,7 +20,7 @@
                 ControleIngressos controleIngressos = new ControleIngressos(controleSessao);
 
                 MenuBilheteria menuBilheteria = new MenuBilheteria(cliente, controleIngressos, controleSessao);
-                menuBilheteria.exibirMenu();
+                MenuBilheteria.exibirMenu();
                 break;
             case 3:
                 MenuLanche.exibirMenuLanche();
