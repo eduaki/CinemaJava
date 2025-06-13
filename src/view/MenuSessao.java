@@ -27,6 +27,7 @@ public class MenuSessao {
                     break;
                 case 2:
                     MenuBilheteria.exibirMenu();
+                    
                     break;
                 case 0:
                     MenuPrincipal.exibirMenuPrincipal();

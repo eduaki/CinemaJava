@@ -120,7 +120,7 @@ public class MenuBilheteria {
     
                 boolean meiaEntrada = (tipoIngresso == 2);
     
-                Map<String, Boolean> assentos = Sala.getAssentos();
+                Map<String, Boolean> assentos = sala.getAssentos();
     
                     char[] fileiras = {'A', 'B', 'C', 'D', 'E'};
                     int colunas = 6;
