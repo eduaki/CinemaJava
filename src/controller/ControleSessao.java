@@ -64,11 +64,6 @@ public class ControleSessao{
                                 |   | acentos livres: %d
                                 + -------------------------- +
                                 """, sessao.getFilme().getTitulo(),(i+1), sessao.getSala().getNumero(), sessao.getHora(), sessao.getIngressoDisponivel());
-            // System.out.println((i + 1) + " - Filme: " + sessao.getFilme().getTitulo() + 
-            //                              "\n    Sala: " + sessao.getSala().getNumero() + 
-            //                              "    - Hora: " + sessao.getHora() +
-            //                              "\n    Ingressos disponíveis: " + sessao.getIngressoDisponivel() +
-            //                              "\n-------------------------------------"); 
         }
     }
 

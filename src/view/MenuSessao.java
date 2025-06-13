@@ -19,12 +19,10 @@ public class MenuSessao {
 
             switch (opcao) {
                 case 1:
-                    System.out.println("Acessando filmes em cartaz...");
-                    //metodo para listar filmes
-                    MenuControleFilme.exibirMenuFilme();
+                    MenuControleFilme.listarFilmes();;
                     break;
                 case 2:
-                    System.out.println("Acessando compra de ingresso...");
+                    MenuBilheteria.comprarIngresso();
                     break;
                 case 3:
                     System.out.println("Acessando sala");
@@ -32,13 +30,14 @@ public class MenuSessao {
                 case 4:
                     System.out.println("Acessando horarios");
                     break;
-                case 5:
-                    System.out.println("Voltar menu principal");
+                case 0:
+                    MenuPrincipal.exibirMenuPrincipal();
                     break;
                 default:
-                    System.out.println("Opcao invalida, escolha de 1 a 5...");
+                    System.out.println("Opcao invalida, escolha de 0 a 4...");
+                    break;
             }
-        } while (opcao !=5);
+        } while (opcao != 0);
     }
 }
 

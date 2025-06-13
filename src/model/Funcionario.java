@@ -54,7 +54,7 @@ public class Funcionario extends Pessoa{
     }
 
     public void removeFilme(Filme filme){
-        Catalogo.removerFilme(filme);
+        Catalogo.removerFilmePorID(filme);
     }  
 
     @Override
