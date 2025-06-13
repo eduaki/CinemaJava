@@ -11,15 +11,15 @@ public class MenuControleFilme {
     public static void exibirMenuFilme() {
         int opcao;
 
-            do {
-                System.out.println("\n----- Menu Controle de Filmes -----");
-                System.out.println("1 - Cadastrar Filme");
-                System.out.println("2 - Listar Filmes");
-                System.out.println("3 - Remover Filme");
-                System.out.println("4 - Voltar");
-                System.out.print("Escolha uma opção: ");
-                    opcao = scanner.nextInt();
-                    scanner.nextLine();
+        do {
+            System.out.println("\n----- Menu Controle de Filmes -----");
+            System.out.println("1 - Cadastrar Filme");
+            System.out.println("2 - Listar Filmes");
+            System.out.println("3 - Remover Filme");
+            System.out.println("4 - Voltar");
+            System.out.print("Escolha uma opção: ");
+            opcao = scanner.nextInt();
+            scanner.nextLine();
 
                     switch (opcao) {
                         case 1:
@@ -40,29 +40,27 @@ public class MenuControleFilme {
                 } while (opcao != 4);
             }
 
-            private static void cadastrarFilme() {
-                System.out.print("Digite o nome do filme: ");
-                String nome = scanner.nextLine();
-                System.out.print("Digite o gênero: ");
-                String genero = scanner.nextLine();
-                System.out.print("Digite a duração (em minutos): ");
-                int duracao = scanner.nextInt();
-                scanner.nextLine();
-                System.out.print("Classificação indicativa(idade): ");
-                int classificacao = scanner.nextInt();
-                scanner.nextLine();
+    public static void cadastrarFilme() {
+        System.out.print("Digite o nome do filme: ");
+        String nome = scanner.nextLine();
+        System.out.print("Digite o gênero: ");
+        String genero = scanner.nextLine();
+        System.out.print("Digite a duração (em minutos): ");
+        int duracao = scanner.nextInt();
+        scanner.nextLine();
+        System.out.print("Classificação indicativa(idade): ");
+        int classificacao = scanner.nextInt();
+        scanner.nextLine();
 
-                Filme filme = new Filme(nome, genero, duracao, classificacao);
-                Catalogo.cadastrarFilme(filme);
-                System.out.println("Filme cadastrado com sucesso!");
-            }
+        Filme filme = new Filme(nome, genero, duracao, classificacao);
+        Catalogo.cadastrarFilme(filme);
+        System.out.println("Filme cadastrado com sucesso!");
+    }
 
-
-
-            //metodo para listar filme
-            private static void listarFilmes() {
-                List<Filme> filmes = Catalogo.getFilmes();
-                System.out.println("\n---- Filmes Cadastrados -----");
+    //metodo para listar filme
+    public static void listarFilmes() {
+        List<Filme> filmes = Catalogo.getFilmes();
+        System.out.println("\n---- Filmes Cadastrados -----");
 
                 if (filmes.isEmpty()){
                     System.out.println("Nenhum filme cadastrado.");

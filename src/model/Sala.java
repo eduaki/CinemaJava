@@ -7,12 +7,12 @@ public class Sala {
 
     private int numero;
     private int capacidade;
-    private Map<String, Boolean> assentos;
+    private static Map<String, Boolean> assentos;
 
     public Sala(int numero) {
         this.numero = numero;
         this.capacidade = 30;
-        this.assentos = new HashMap<>();
+        Sala.assentos = new HashMap<>();
 
         char[] fileiras = {'A', 'B', 'C', 'D', 'E'};
         int assentosPorFileira = 6;
@@ -27,6 +27,10 @@ public class Sala {
 
     public boolean assentoExiste(String assento) {
         return assentos.containsKey(assento);
+    }
+
+    public static Map<String, Boolean> getAssentos() {
+      return assentos;
     }
 
     public boolean verificarDisponibilidade(String assento) {
