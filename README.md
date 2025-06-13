@@ -69,10 +69,71 @@ B1 B2 B3 B4 B5 B6
 
 🟩 = disponível  🟥 = ocupado
 
+### 📂 Gerenciamento de Usuários (`GerenciamentoUsuarios.java`)
+
+Esta classe centraliza o controle de **cadastro**, **remoção** e **persistência** de dados de **clientes** e **funcionários**, incluindo a criação automática de um usuário administrador padrão (`admin`). Ela utiliza **serialização em arquivos (`.txt`)** para salvar e carregar os dados.
+
+**Principais responsabilidades:**
+
+- Carregar e salvar os dados de clientes e funcionários via arquivos (`Clientes.txt`, `Funcionarios.txt`).
+- Garantir que um funcionário administrador (`CPF = "admin"`) esteja presente.
+- Métodos para adicionar, remover e listar clientes e funcionários.
+- Verificação de privilégios de administrador.
+
+### 🎟️ Controle ingressos (`ControleIngressos.java`)
+
+Este controlador é responsável pela venda, cancelamento e verificação de ingressos das sessões de cinema. Ele interage com as classes ControleSessao, Sala e Sessao.
+
+**Métodos principais**
+
+- **venderIngresso(...)**  
+  Realiza a venda de um ingresso para um cliente:  
+  - Verifica se a sessão e o assento existem e estão disponíveis;  
+  - Reserva o assento;  
+  - Cria o ingresso e o adiciona à sessão;  
+  - Diminui a contagem de ingressos disponíveis.
+- **cancelarIngresso(...)**  
+  Permite ao cliente cancelar o ingresso caso já tenha um para a sessão indicada.
+- **clienteTemIngresso(...)**  
+  Verifica se o cliente já possui um ingresso para uma determinada sessão.
+
+### 🎬 Controle de sessão (`ControleSessao.java`)
+
+Esta classe é responsável por gerenciar as sessões de filmes, como cadastrar, listar e recuperar sessões específicas.
+
+*Métodos principais*
+
+- **criarComSessoesPadrao()**  
+  Cria um controle de sessões com três salas e filmes pré-definidos, em horários diferentes. Usa os filmes do catálogo existente (`Catalogo.getFilmes()`).
+  
+- **listarSessoes()**  
+  Retorna todas as sessões cadastradas.
+  
+- **listarSessoesPorFilme(String nomeFilme)**  
+  Retorna todas as sessões que estão exibindo um filme com o título correspondente.
+  
+- **exibirSessoes()**  
+  Exibe todas as sessões formatadas, mostrando o nome do filme, sala, horário e quantidade de assentos livres.
+- **verificaSessao(int idSessao)**
+  Verifica se a sessão com o ID especificado existe.
+  
+- **adicionarSessao(Sessao sessao)**  
+  Adiciona uma nova sessão ao sistema.
+  
+- **getSessaoPorId(int id)**  
+  Retorna a sessão com base no ID informado, se existir.
+
+## Considerações finais
+O CinemaJava é um projeto desenvolvido para a faculdade, no qual cinco amigos se uniram para criar um sistema completo para um cinema. Foi um desafio, mas também uma ótima oportunidade de aprendizado. Utilizamos o ChatGPT e o Gemini para ajudar no tratamento de erros e para deixar a interface mais atraente e funcional.
+
+Esse projeto pode e deve receber atualizações no futuro, com novas funcionalidades e melhorias constantes.
+
+
 ## 👨‍💻 Autores
 
-Desenvolvido por: [Eduardo Alves](https://github.com/eduaki)
-[Alex Silva](https://github.com/alexhonorato)
-[Tainara Lashowski](https://github.com/tailachowski)
-[Bruna dadona](https://github.com/BrunaDadona)
-[Michelle Bornes](https://github.com/MichelleBornes)
+Desenvolvido por: 
+- [Eduardo Alves](https://github.com/eduaki) 
+- [Alex Silva](https://github.com/alexhonorato) 
+- [Tainara Lashowski](https://github.com/tailachowski) 
+- [Bruna Dadona](https://github.com/BrunaDadona) 
+- [Michelle Bornes](https://github.com/MichelleBornes)
