@@ -13,9 +13,9 @@ public class GerenciamentoPedidos {
     private static boolean dadosCarregados = false;
 
     public GerenciamentoPedidos(){
-        cardapio.add(new Produto(60.0f, "Combo"));
-        cardapio.add(new Produto(40.0f, "Pipoca(com manteiga)"));
-        cardapio.add(new Produto(25.0f, "Bebida 500ml"));
+        cardapio.add(new Produto(60.0f, "Combo", 30));
+        cardapio.add(new Produto(40.0f, "Pipoca(com manteiga)", 40));
+        cardapio.add(new Produto(25.0f, "Bebida 500ml", 1));
     }
 
     @SuppressWarnings("unchecked")
@@ -49,11 +49,8 @@ public class GerenciamentoPedidos {
             if(p.getNumeroPedido() == numeroPedido){
                 p.setCancelado(true);
                 return true;
-            }else{
-                return false;
             }
         }
-
         return false;
     }
 

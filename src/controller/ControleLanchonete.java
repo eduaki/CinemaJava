@@ -23,8 +23,25 @@ public class ControleLanchonete {
         float valorTotalPedido = 0;
 
         for (int item : itensPedido) {
+            Produto produto = cardapio.get(item - 1);
+
+            if(produto.getQtdEstoque() <= 0) {
+                System.out.print("Produto '" + produto.getNome() + "' está fora de estoque!");
+                
+                return false;  
+            }
+        }
+
+
+        for (int item : itensPedido) {
+            Produto produto = cardapio.get(item - 1);
+            
+            produto.reduzirEstoque(1); 
+            
+            System.out.println(item);
             float valorProduto = cardapio.get(item-1).getValor();
-            valorTotalPedido += valorProduto;
+                       
+            valorTotalPedido += produto.getValor();
         }
 
         for(Pedido p : GerenciamentoPedidos.verHistorico()){
@@ -88,3 +105,4 @@ public class ControleLanchonete {
     }
 
 }
+
